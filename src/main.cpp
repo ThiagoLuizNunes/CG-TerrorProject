@@ -14,6 +14,7 @@ int main(int argc, char *argv[]) {
   glutCreateWindow("My first progm with OpenGL");
   glutDisplayFunc(drawing);
   glutReshapeFunc(changeSizeWindow);
+  glutTimerFunc(33, Timer, 1);
   initializes();
   glutMainLoop();
 
