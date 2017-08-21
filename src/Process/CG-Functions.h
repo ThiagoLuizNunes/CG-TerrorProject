@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 extern "C" {
   #include <GL/gl.h>
@@ -25,5 +26,7 @@ void initializes(void) {
 }
 
 //Callback function called when the window size is changed
-void changeSizeWindow(GLsizei w, GLsizei h) {
+void reshapeWindow(GLsizei w, GLsizei h) {
+  std::cout << "*** RESHAPE-WINDOW CALLBACK FUNCTION IT'S RUN" << '\n';
+  std::cout << ">>> New window size: width - " + std::to_string(w) + " height- " + std::to_string(h) << '\n';
 }

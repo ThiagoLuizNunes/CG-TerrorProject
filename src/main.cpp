@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
   //Responsible by to draw the window if necessery
   glutDisplayFunc(drawing);
   // //Responsible by window resizing
-  // glutReshapeFunc();
+  glutReshapeFunc(reshapeWindow);
   // //Responsible by keyboard event
   // glutKeyboardFunc();
   // //Responsible by special keyboard event
