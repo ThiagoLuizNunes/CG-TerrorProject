@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
   // //Responsible by window resizing
   glutReshapeFunc(reshapeWindow);
   // //Responsible by keyboard event
-  // glutKeyboardFunc();
+  glutKeyboardFunc(simpleKeyboard);
   // //Responsible by special keyboard event
   // glutSpecialFunc();
   // //Responsible by mouse button events

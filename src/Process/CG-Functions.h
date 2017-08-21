@@ -30,3 +30,21 @@ void reshapeWindow(GLsizei w, GLsizei h) {
   std::cout << "*** RESHAPE-WINDOW CALLBACK FUNCTION IT'S RUN" << '\n';
   std::cout << ">>> New window size: width - " + std::to_string(w) + " height- " + std::to_string(h) << '\n';
 }
+
+//Callback function responsible by simple keys
+void simpleKeyboard (unsigned char key, int x, int y) {
+  int auxChange;
+  std::cout << "*** Key handling commom" << '\n';
+  std::cout << "Key: " + std::to_string(key) << '\n';
+
+  if(key == 27) {
+    exit(0);
+  }
+  if(key == 'a') {
+    glutFullScreen();
+  }
+  if(key == 'A') {
+    glutReshapeWindow(700,500);
+    glutPositionWindow(100,100);
+  }
+}
