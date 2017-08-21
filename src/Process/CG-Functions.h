@@ -1,3 +1,5 @@
+#include <iostream>
+
 extern "C" {
   #include <GL/gl.h>
   #include <GL/glut.h>
@@ -5,14 +7,16 @@ extern "C" {
 
 //Callback function called to make the drawing
 void drawing(void) {
+  std::cout << "*** DRAWING CALLBACK FUNCTION IT'S RUN" << '\n';
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 
+  //Define background color of the visualization window with black color
+  glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
   //Does clean the visualization window with a background color specified
   glClear(GL_COLOR_BUFFER_BIT);
-
-  //Specifies the current color is RED
-  glColor3f(1.0f, 0.0f, 0.0f);
+  //Displays the drawing in the window
+  glutSwapBuffers();
 }
 
 void initializes(void) {
