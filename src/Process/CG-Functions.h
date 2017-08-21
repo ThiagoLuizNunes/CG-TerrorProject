@@ -66,7 +66,7 @@ void simpleKeyboard (unsigned char key, int x, int y) {
 
 //Callback function responsible by special keys
 void specialKeyboad (int key, int x, int y) {
-  std::cout << "*** Key handlgin special" << '\n';
+  std::cout << "*** Key handling special" << '\n';
 
   switch (key) {
     case GLUT_KEY_F1: 
@@ -78,5 +78,17 @@ void specialKeyboad (int key, int x, int y) {
     case GLUT_KEY_F3:
       std::cout << "*** Key F3 pressed" << '\n';
       break;
+  }
+}
+
+//Callback function responsible by mouse click
+void clickEventMouse (int button, int state, int x, int y) {
+  std::clog << "*** MOUSE CLICK EVENT" << '\n';
+
+  if(state == GLUT_DOWN) {
+    std::clog << "DOWN BUTTON " + std::to_string(button) + " PRESSED" << '\n';
+  }
+  if(state == GLUT_UP) {
+    std::clog << "UP BUTTON " + std::to_string(button) + " PRESSED" << '\n';
   }
 }
