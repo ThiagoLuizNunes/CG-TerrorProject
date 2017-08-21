@@ -33,10 +33,11 @@ void reshapeWindow(GLsizei w, GLsizei h) {
 
 //Callback function responsible by simple keys
 void simpleKeyboard (unsigned char key, int x, int y) {
-  int auxChange;
+  int auxChange = glutGetModifiers();
   std::cout << "*** Key handling commom" << '\n';
   std::cout << "Key: " + std::to_string(key) << '\n';
 
+  /*Window options*/
   if(key == 27) {
     exit(0);
   }
@@ -46,5 +47,19 @@ void simpleKeyboard (unsigned char key, int x, int y) {
   if(key == 'A') {
     glutReshapeWindow(700,500);
     glutPositionWindow(100,100);
+  }
+
+  /*Character options*/
+  //Running fast character
+  if(auxChange & GLUT_ACTIVE_SHIFT) {
+    std::cout << "RUN FAST" << '\n';
+  }
+  //Character crouching
+  if(auxChange & GLUT_ACTIVE_CTRL) {
+    std::cout << "CHARACTER CROUCHING" << '\n';
+  }
+  //ALT key plus other key pressed
+  if(auxChange & GLUT_ACTIVE_ALT) {
+    std::cout << "ALT IS PRESSED" << '\n';
   }
 }
