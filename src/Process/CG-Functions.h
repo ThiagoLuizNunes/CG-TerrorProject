@@ -63,3 +63,20 @@ void simpleKeyboard (unsigned char key, int x, int y) {
     std::cout << "ALT IS PRESSED" << '\n';
   }
 }
+
+//Callback function responsible by special keys
+void specialKeyboad (int key, int x, int y) {
+  std::cout << "*** Key handlgin special" << '\n';
+
+  switch (key) {
+    case GLUT_KEY_F1: 
+      std::cout << "*** Key F1 pressed" << '\n';
+      break;
+    case GLUT_KEY_F2:
+      std::cout << "*** Key F2 pressed" << '\n';
+      break;
+    case GLUT_KEY_F3:
+      std::cout << "*** Key F3 pressed" << '\n';
+      break;
+  }
+}

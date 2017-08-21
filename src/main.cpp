@@ -24,8 +24,8 @@ int main(int argc, char *argv[]) {
   // //Responsible by keyboard event
   glutKeyboardFunc(simpleKeyboard);
   // //Responsible by special keyboard event
-  // glutSpecialFunc();
-  // //Responsible by mouse button events
+  glutSpecialFunc(specialKeyboad);
+  //Responsible by mouse button events
   // glutMouseFunc();
   // //Responsible by mouse movement event when clicked
   // glutMotionFunc();
