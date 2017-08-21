@@ -8,14 +8,31 @@ Project: CG-TerrorProject
 int main(int argc, char *argv[]) {
 
   glutInit(&argc, argv);
-  glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-  glutInitWindowSize(400,350);
+  glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+  //Glut window width and height
+  glutInitWindowSize(700,500);
   glutInitWindowPosition(10,10);
-  glutCreateWindow("My first progm with OpenGL");
+  glutCreateWindow("Hello darkness");
+
+  //Callback functions
+  //Responsible by to draw the window if necessery
   glutDisplayFunc(drawing);
-  glutReshapeFunc(changeSizeWindow);
-  glutTimerFunc(33, Timer, 1);
-  initializes();
+  //Responsible by window resizing
+  glutReshapeFunc();
+  //Responsible by keyboard event
+  glutKeyboardFunc();
+  //Responsible by special keyboard event
+  glutSpecialFunc();
+  //Responsible by mouse button events
+  glutMouseFunc();
+  //Responsible by mouse movement event when clicked
+  glutMotionFunc();
+  //Responsible by mouse movement event
+  glutPassiveMotionFunc();
+  //Responsible when there is not events
+  glutIdleFunc();
+
+  // initializes();
   glutMainLoop();
 
   return 0;
