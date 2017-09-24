@@ -41,7 +41,7 @@ void simpleKeyboard (unsigned char key, int x, int y) {
   if(key == 27) {
     exit(0);
   }
-  if(key == 'a') {
+  if((key == 13) && GLUT_ACTIVE_ALT) {
     glutFullScreen();
   }
   if(key == 'A') {
@@ -69,7 +69,7 @@ void specialKeyboad (int key, int x, int y) {
   std::cout << "*** Key handling special" << '\n';
 
   switch (key) {
-    case GLUT_KEY_F1: 
+    case GLUT_KEY_F1:
       std::cout << "*** Key F1 pressed" << '\n';
       break;
     case GLUT_KEY_F2:
