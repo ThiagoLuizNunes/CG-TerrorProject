@@ -9,8 +9,6 @@ extern "C" {
 
 //Callback function called to make the drawing
 void drawing (void) {
-
-  // glViewport(0, 0, 350, 250);
   //Does clean the visualization window with a background color specified
   glClear(GL_COLOR_BUFFER_BIT);
   //Displays the drawing in the window
@@ -19,21 +17,11 @@ void drawing (void) {
 
   // Limpa a janela de visualização com a cor de fundo especificada
   glClear(GL_COLOR_BUFFER_BIT);
+  glViewport(0, 0, 350, 250);
+  DrawQuad();
 
-  // Especifica que a cor corrente é vermelha
-  //         R     G     B
-  glColor3f(1.0f, 0.0f, 0.0f);
-
-  // Desenha um quadrado preenchido com a cor corrente
-  glBegin(GL_QUADS);
-           glVertex2i(100,150);
-           glVertex2i(100,100);
-           // Especifica que a cor corrente é azul
-           glColor3f(0.0f, 0.0f, 1.0f);
-           glVertex2i(150,100);
-           glVertex2i(150,150);
-  glEnd();
-
+  glViewport(0, 250, 350, 500);
+  DrawQuad();
   // Executa os comandos OpenGL
   glFlush();
 

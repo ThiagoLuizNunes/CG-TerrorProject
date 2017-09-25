@@ -6,7 +6,7 @@ extern "C" {
   #include <GL/glut.h>
 }
 
-void drawLine (void) {
+void DrawQuad (void) {
   glColor3f(1.0f, 0.0f, 0.0f);
   glBegin(GL_QUADS);
     glVertex2i(100,150);
