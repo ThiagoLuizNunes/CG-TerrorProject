@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "Objects.h"
 
 extern "C" {
   #include <GL/gl.h>
@@ -7,31 +8,67 @@ extern "C" {
 }
 
 //Callback function called to make the drawing
-void drawing(void) {
-  std::cout << "*** DRAWING CALLBACK FUNCTION IT'S RUN" << '\n';
-  glMatrixMode(GL_MODELVIEW);
-  glLoadIdentity();
+void drawing (void) {
 
-  //Define background color of the visualization window with black color
-  glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+  // glViewport(0, 0, 350, 250);
   //Does clean the visualization window with a background color specified
   glClear(GL_COLOR_BUFFER_BIT);
   //Displays the drawing in the window
-  glutSwapBuffers();
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+
+  // Limpa a janela de visualização com a cor de fundo especificada
+  glClear(GL_COLOR_BUFFER_BIT);
+
+  // Especifica que a cor corrente é vermelha
+  //         R     G     B
+  glColor3f(1.0f, 0.0f, 0.0f);
+
+  // Desenha um quadrado preenchido com a cor corrente
+  glBegin(GL_QUADS);
+           glVertex2i(100,150);
+           glVertex2i(100,100);
+           // Especifica que a cor corrente é azul
+           glColor3f(0.0f, 0.0f, 1.0f);
+           glVertex2i(150,100);
+           glVertex2i(150,150);
+  glEnd();
+
+  // Executa os comandos OpenGL
+  glFlush();
+
+  // glutSwapBuffers();
 }
 
-void initializes(void) {
+void initializes (void) {
   //Define background color of the visualization window with black color
   glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
 //Callback function called when the window size is changed
-void reshapeWindow(GLsizei w, GLsizei h) {
-  std::cout << "*** RESHAPE-WINDOW CALLBACK FUNCTION IT'S RUN" << '\n';
-  std::cout << ">>> New window size: width - " + std::to_string(w) + " height- " + std::to_string(h) << '\n';
+void reshapeWindow (GLsizei w, GLsizei h) {
+  GLsizei width, height;
+  //Prevent division by zero
+  if(h == 0) h = 1;
+
+  width = w;
+  height = h;
+
+  //Viewport dimensions
+  glViewport(0, 0, width, height);
+
+  //Start coordinates system
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+
+  // Estabelece a janela de seleção (left, right, bottom, top)
+  if (width <= height)
+  gluOrtho2D (0.0f, 250.0f, 0.0f, 250.0f*height/width);
+  else
+  gluOrtho2D (0.0f, 250.0f*width/height, 0.0f, 250.0f);
 }
 
-//Callback function responsible by simple keys
+// Callback function responsible by simple keys
 void simpleKeyboard (unsigned char key, int x, int y) {
   int auxChange = glutGetModifiers();
   std::cout << "*** Key handling commom" << '\n';

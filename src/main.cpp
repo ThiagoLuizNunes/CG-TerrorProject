@@ -8,7 +8,8 @@ Project: CG-TerrorProject
 int main(int argc, char *argv[]) {
 
   glutInit(&argc, argv);
-  glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH | GLUT_RGB);
+  // glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH | GLUT_RGB);
+  glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
   //Specifies the initial position
   glutInitWindowPosition(10,10);
   //Specifies the size at pixels; width and height
@@ -19,22 +20,22 @@ int main(int argc, char *argv[]) {
   /*Callback functions*/
   //Responsible by to draw the window if necessery
   glutDisplayFunc(drawing);
-  // //Responsible by window resizing
+  //Responsible by window resizing
   glutReshapeFunc(reshapeWindow);
-  // //Responsible by keyboard event
+  //Responsible by keyboard event
   glutKeyboardFunc(simpleKeyboard);
-  // //Responsible by special keyboard event
+  //Responsible by special keyboard event
   glutSpecialFunc(specialKeyboad);
-  //Responsible by mouse button events
+  // Responsible by mouse button events
   glutMouseFunc(clickEventMouse);
-  // //Responsible by mouse movement event when clicked
+  //Responsible by mouse movement event when clicked
   // glutMotionFunc();
-  // //Responsible by mouse movement event
+  //Responsible by mouse movement event
   // glutPassiveMotionFunc();
-  // //Responsible when there is not events
+  //Responsible when there is not events
   // glutIdleFunc();
 
-  // initializes();
+  initializes();
   //From the moment this function is called, the program
   //control is transferred to GLUT, beginning the management events.
   glutMainLoop();
