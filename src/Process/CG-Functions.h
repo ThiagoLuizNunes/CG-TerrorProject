@@ -5,6 +5,7 @@
 extern "C" {
   #include <GL/gl.h>
   #include <GL/glut.h>
+  #include <math.h>
 }
 
 //Callback function called to make the drawing
@@ -16,6 +17,15 @@ float axisCamX = 0.0f;
 float axisCamY = 0.0f;
 float axisCamZ = 2.5f;
 
+// angle of rotation for the camera direction
+float angle=0.0;
+// actual vector representing the camera's direction
+float lx=0.0f,lz=-1.0f;
+// XZ position of the camera
+float x=0.0f,z=5.0f;
+
+int currentPositionX = 512;
+
 void drawing (void) {
   //Does clean the visualization window with a background color specified
   glClear(GL_COLOR_BUFFER_BIT);
@@ -26,9 +36,12 @@ void drawing (void) {
   //Cam position
   //Target position
   //Up position
-  gluLookAt(	axisCamX+auxCamX, axisCamY+auxCamY, axisCamZ+auxCamZ,
-				0.0f, 0.0f, 0.0f,
-				0.0f, 1.0f, 0.0f);
+  // gluLookAt(	axisCamX+auxCamX, axisCamY+auxCamY, axisCamZ+auxCamZ,
+		// 		0.0f, 0.0f, 0.0f,
+		// 		0.0f, 1.0f, 0.0f);
+  gluLookAt(  x, 0.0f, z,
+        x+lx, 0.0f,  z+lz,
+        0.0f, 1.0f,  0.0f);
 
   glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -72,29 +85,37 @@ void reshapeWindow (GLsizei w, GLsizei h) {
 // Callback function responsible by simple keys
 void simpleKeyboard (unsigned char key, int x, int y) {
   int auxChange = glutGetModifiers();
-  // std::cout << "*** Key handling commom" << '\n';
-  // std::cout << "Key: " + std::to_string(key) << '\n';
-
   /**
    *
    * Motion keys
    *
    */
+  float fraction = 0.03f;
   if (key == 'w') {
-    auxCamZ -= 0.1f;
+    // auxCamZ -= 0.1f;
+    x += lx * fraction;
+    z += lz * fraction;
     glutPostRedisplay();
   }
   if (key == 's') {
-    auxCamZ += 0.1f;
+    // auxCamZ += 0.1f;
+    x -= lx * fraction;
+    z -= lz * fraction;
     glutPostRedisplay();
   }
   if (key == 'd') {
-    auxCamX += 0.1f;
-    glutPostRedisplay();
+    // auxCamX += 0.1f;
+    // angle += 0.03f;
+    // lx = sin(angle);
+    // lz = -cos(angle);
+    // glutPostRedisplay();
   }
   if (key == 'a') {
-    auxCamX -= 0.1f;
-    glutPostRedisplay();
+    // auxCamX -= 0.1f;
+    // angle -= 0.03f;
+    // lx = sin(angle);
+    // lz = -cos(angle);
+    // glutPostRedisplay();
   }
   /**
    *
@@ -154,10 +175,38 @@ void specialKeyboad (int key, int x, int y) {
 void clickEventMouse (int button, int state, int x, int y) {
   std::clog << "*** MOUSE CLICK EVENT" << '\n';
 
+  if(state == GLUT_UP) {
+    std::clog << "UP BUTTON " + std::to_string(button) + " PRESSED" << '\n';
+    std::clog << "x: " << x << " Y: " << y << '\n';
+
+  }
   if(state == GLUT_DOWN) {
     std::clog << "DOWN BUTTON " + std::to_string(button) + " PRESSED" << '\n';
   }
-  if(state == GLUT_UP) {
-    std::clog << "UP BUTTON " + std::to_string(button) + " PRESSED" << '\n';
+
+}
+
+void mousePassiveMotion (int x, int y) {
+  if (x > currentPositionX) {
+    currentPositionX += x - currentPositionX;
+    angle += 0.01f;
+    lx = sin(angle);
+    lz = -cos(angle);
+    glutPostRedisplay();
+  } else {
+      currentPositionX -= currentPositionX - x;
+      angle -= 0.01f;
+      lx = sin(angle);
+      lz = -cos(angle);
+      glutPostRedisplay();
   }
+}
+
+void mouseEntry (int state) {
+  if (state == GLUT_LEFT) {
+    angle == 0.0;
+  } else {
+    angle == 1.0;
+  }
+  glutPostRedisplay();
 }

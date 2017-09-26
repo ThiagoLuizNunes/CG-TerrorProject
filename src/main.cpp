@@ -31,7 +31,9 @@ int main(int argc, char *argv[]) {
   //Responsible by mouse movement event when clicked
   // glutMotionFunc();
   //Responsible by mouse movement event
-  // glutPassiveMotionFunc();
+  glutPassiveMotionFunc(mousePassiveMotion);
+  //Responsible for when the mouse enters or leaves the window
+  glutEntryFunc(mouseEntry);
   //Responsible when there is not events
   // glutIdleFunc();
 
