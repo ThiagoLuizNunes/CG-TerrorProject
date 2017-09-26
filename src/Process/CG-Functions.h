@@ -80,24 +80,21 @@ void simpleKeyboard (unsigned char key, int x, int y) {
    * Motion keys
    *
    */
-
   if (key == 'w') {
-    std::cout << "w pressed" << '\n';
-    auxCamZ = auxCamZ - 0.1f;
+    auxCamZ -= 0.1f;
     glutPostRedisplay();
-    std::cout << auxCamZ << '\n';
   }
   if (key == 's') {
-    std::cout << "s pressed" << '\n';
-    auxCamZ = auxCamZ + 0.1f;
+    auxCamZ += 0.1f;
     glutPostRedisplay();
-    std::cout << auxCamZ << '\n';
   }
   if (key == 'd') {
-
+    auxCamX += 0.1f;
+    glutPostRedisplay();
   }
   if (key == 'a') {
-
+    auxCamX -= 0.1f;
+    glutPostRedisplay();
   }
   /**
    *
