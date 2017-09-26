@@ -14,20 +14,19 @@ void drawing (void) {
 
   glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-  gluPerspective( 55.0f, 1.0f, 0.1f, 100.0f );
+  gluPerspective( 85.0f, 1.0f, 0.1f, 100.0f );
   //Cam position
   //Target position
   //Up position
-  gluLookAt(	0.0f, 1.0f, 2.5f,
+  gluLookAt(	0.0f, 0.0f, 2.5f,
 				0.0f, 0.0f, 0.0f,
 				0.0f, 1.0f, 0.0f);
 
   glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
   // DrawTriangle();
+  DrawCube();
   DrawQuad();
-  // DrawCube();
-
   // Executa os comandos OpenGL
   glFlush();
 

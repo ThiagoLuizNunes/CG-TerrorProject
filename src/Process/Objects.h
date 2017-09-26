@@ -23,13 +23,14 @@ void DrawTriangle (void) {
 }
 void DrawQuad (void) {
   glColor3f(1.0f, 0.0f, 0.0f);
+  glTranslatef(-1.0f, 0.0f, 0.0f);
   glBegin(GL_QUADS);
+    glVertex3f(0.0f,1.0f,0.0f);
     glVertex3f(0.0f, 0.0f, 0.0f);
-    glVertex3f(0.0f,25.0f,0.0f);
     // Especifica que a cor corrente é azul
     glColor3f(0.0f, 0.0f, 1.0f);
-    glVertex3f(25.0f,0.0f, 0.0f);
-    glVertex3f(25.0f,25.0f,0.0f);
+    glVertex3f(1.0f,0.0f, 0.0f);
+    glVertex3f(1.0f,1.0f,0.0f);
   glEnd();
 }
 
