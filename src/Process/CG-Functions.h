@@ -84,11 +84,13 @@ void simpleKeyboard (unsigned char key, int x, int y) {
   if (key == 'w') {
     std::cout << "w pressed" << '\n';
     auxCamZ = auxCamZ - 0.1f;
+    glutPostRedisplay();
     std::cout << auxCamZ << '\n';
   }
   if (key == 's') {
     std::cout << "s pressed" << '\n';
     auxCamZ = auxCamZ + 0.1f;
+    glutPostRedisplay();
     std::cout << auxCamZ << '\n';
   }
   if (key == 'd') {
