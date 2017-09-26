@@ -36,6 +36,8 @@ int main(int argc, char *argv[]) {
   // glutIdleFunc();
 
   initializes();
+  glEnable(GL_DEPTH_TEST);
+
   //From the moment this function is called, the program
   //control is transferred to GLUT, beginning the management events.
   glutMainLoop();

@@ -8,6 +8,14 @@ extern "C" {
 }
 
 //Callback function called to make the drawing
+float auxCamX = 0.0f;
+float auxCamY = 0.0f;
+float auxCamZ = 0.0f;
+
+float axisCamX = 0.0f;
+float axisCamY = 0.0f;
+float axisCamZ = 2.5f;
+
 void drawing (void) {
   //Does clean the visualization window with a background color specified
   glClear(GL_COLOR_BUFFER_BIT);
@@ -18,7 +26,7 @@ void drawing (void) {
   //Cam position
   //Target position
   //Up position
-  gluLookAt(	0.0f, 0.0f, 2.5f,
+  gluLookAt(	axisCamX+auxCamX, axisCamY+auxCamY, axisCamZ+auxCamZ,
 				0.0f, 0.0f, 0.0f,
 				0.0f, 1.0f, 0.0f);
 
@@ -64,32 +72,64 @@ void reshapeWindow (GLsizei w, GLsizei h) {
 // Callback function responsible by simple keys
 void simpleKeyboard (unsigned char key, int x, int y) {
   int auxChange = glutGetModifiers();
-  std::cout << "*** Key handling commom" << '\n';
-  std::cout << "Key: " + std::to_string(key) << '\n';
+  // std::cout << "*** Key handling commom" << '\n';
+  // std::cout << "Key: " + std::to_string(key) << '\n';
 
-  /*Window options*/
-  if(key == 27) {
+  /**
+   *
+   * Motion keys
+   *
+   */
+
+  if (key == 'w') {
+    std::cout << "w pressed" << '\n';
+    auxCamZ = auxCamZ - 0.1f;
+    std::cout << auxCamZ << '\n';
+  }
+  if (key == 's') {
+    std::cout << "s pressed" << '\n';
+    auxCamZ = auxCamZ + 0.1f;
+    std::cout << auxCamZ << '\n';
+  }
+  if (key == 'd') {
+
+  }
+  if (key == 'a') {
+
+  }
+  /**
+   *
+   * Window options
+   *
+   */
+  
+  if (key == 27) {
     exit(0);
   }
-  if((key == 13) && GLUT_ACTIVE_ALT) {
+  if ((key == 13) && GLUT_ACTIVE_ALT) {
     glutFullScreen();
   }
-  if(key == 'A') {
-    glutReshapeWindow(700,500);
-    glutPositionWindow(100,100);
-  }
+  // if (key == 'A') {
+  //   glutReshapeWindow(700,500);
+  //   glutPositionWindow(100,100);
+  // }
 
-  /*Character options*/
+  /**
+   *
+   * Character options
+   *
+   */
+  
   //Running fast character
-  if(auxChange & GLUT_ACTIVE_SHIFT) {
+  if (auxChange & GLUT_ACTIVE_SHIFT) {
     std::cout << "RUN FAST" << '\n';
   }
   //Character crouching
-  if(auxChange & GLUT_ACTIVE_CTRL) {
+  if (auxChange & GLUT_ACTIVE_CTRL) {
     std::cout << "CHARACTER CROUCHING" << '\n';
   }
   //ALT key plus other key pressed
-  if(auxChange & GLUT_ACTIVE_ALT) {
+  if (auxChange & GLUT_ACTIVE_ALT) {
     std::cout << "ALT IS PRESSED" << '\n';
   }
 }
