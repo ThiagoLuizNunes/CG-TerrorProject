@@ -25,6 +25,7 @@ float lx=0.0f,lz=-1.0f;
 float x=0.0f,z=5.0f;
 
 int currentPositionX = 512;
+int currentPositionY = 360;
 
 void drawing (void) {
   //Does clean the visualization window with a background color specified
@@ -193,13 +194,15 @@ void mousePassiveMotion (int x, int y) {
     lx = sin(angle);
     lz = -cos(angle);
     glutPostRedisplay();
-  } else {
+  } 
+  if (x < currentPositionX) {
       currentPositionX -= currentPositionX - x;
       angle -= 0.01f;
       lx = sin(angle);
       lz = -cos(angle);
       glutPostRedisplay();
   }
+  
 }
 
 void mouseEntry (int state) {
