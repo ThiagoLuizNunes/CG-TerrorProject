@@ -9,12 +9,12 @@ extern "C" {
 void DrawQuad (void) {
   glColor3f(1.0f, 0.0f, 0.0f);
   glBegin(GL_QUADS);
-    glVertex2i(100,150);
-    glVertex2i(100,100);
+    glVertex2i(0,50);
+    glVertex2i(0,0);
     // Especifica que a cor corrente é azul
     glColor3f(0.0f, 0.0f, 1.0f);
-    glVertex2i(150,100);
-    glVertex2i(150,150);
+    glVertex2i(50,0);
+    glVertex2i(50,50);
   glEnd();
 }
 

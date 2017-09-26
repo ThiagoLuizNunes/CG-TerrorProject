@@ -11,17 +11,19 @@ extern "C" {
 void drawing (void) {
   //Does clean the visualization window with a background color specified
   glClear(GL_COLOR_BUFFER_BIT);
-  //Displays the drawing in the window
+
+  // glViewport(0, 0, 512, 512);
+  glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+  gluPerspective( 55.0f, 1.0f, 0.1f, 100.0f );
+  gluLookAt(	0.0f, 0.0f, 2.5f,
+				0.0f, 0.0f, 0.0f,
+				0.0f, 1.0f, 0.0f);
+
   glMatrixMode(GL_MODELVIEW);
-  glLoadIdentity();
+	glLoadIdentity();
+  DrawCube();
 
-  // Limpa a janela de visualização com a cor de fundo especificada
-  glClear(GL_COLOR_BUFFER_BIT);
-  glViewport(0, 0, 350, 250);
-  DrawQuad();
-
-  glViewport(0, 250, 350, 500);
-  DrawQuad();
   // Executa os comandos OpenGL
   glFlush();
 

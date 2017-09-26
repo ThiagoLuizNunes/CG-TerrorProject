@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
   //Specifies the initial position
   glutInitWindowPosition(10,10);
   //Specifies the size at pixels; width and height
-  glutInitWindowSize(700,500);
+  glutInitWindowSize(1024,720);
   //Create the window with described name
   glutCreateWindow("Hello darkness");
 
