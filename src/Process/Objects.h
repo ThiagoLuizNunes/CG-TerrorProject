@@ -6,6 +6,42 @@ extern "C" {
   #include <GL/glut.h>
 }
 
+void DrawGround () {
+  glColor3f(0.9f, 0.9f, 0.9f);
+	glBegin(GL_QUADS);
+		glVertex3f(-100.0f, 0.0f, -100.0f);
+		glVertex3f(-100.0f, 0.0f,  100.0f);
+		glVertex3f( 100.0f, 0.0f,  100.0f);
+		glVertex3f( 100.0f, 0.0f, -100.0f);
+	glEnd();
+}
+
+void DrawSnowMan () {
+	glColor3f(1.0f, 1.0f, 1.0f);
+
+  // Draw Body
+	glTranslatef(0.0f ,0.75f, 0.0f);
+	glutSolidSphere(0.75f,20,20);
+
+  // Draw Head
+	glTranslatef(0.0f, 1.0f, 0.0f);
+	glutSolidSphere(0.25f,20,20);
+
+  // Draw Eyes
+	glPushMatrix();
+	glColor3f(0.0f,0.0f,0.0f);
+	glTranslatef(0.05f, 0.10f, 0.18f);
+	glutSolidSphere(0.05f,10,10);
+	glTranslatef(-0.1f, 0.0f, 0.0f);
+	glutSolidSphere(0.05f,10,10);
+	glPopMatrix();
+
+  // Draw Nose
+	glColor3f(1.0f, 0.5f , 0.5f);
+	glRotatef(0.0f,1.0f, 0.0f, 0.0f);
+	glutSolidCone(0.08f,0.5f,10,2);
+}
+
 void DrawTriangle (void) {
   glTranslatef(0.0f,0.0f,-4.0f);//move forward 4 units
 
@@ -21,6 +57,7 @@ void DrawTriangle (void) {
     glVertex3f(0.75f,0.25f,0.0f);//triangle two third vertex
   glEnd();//end drawing of triangles
 }
+
 void DrawQuad (void) {
   glColor3f(1.0f, 0.0f, 0.0f);
   glTranslatef(-1.0f, 0.0f, 0.0f);

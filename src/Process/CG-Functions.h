@@ -18,11 +18,11 @@ float axisCamY = 0.0f;
 float axisCamZ = 2.5f;
 
 // angle of rotation for the camera direction
-float angle=0.0;
+float angle = 0.0;
 // actual vector representing the camera's direction
-float lx=0.0f,lz=-1.0f;
+float lx = 0.0f, ly = 0.0f, lz = -1.0f;
 // XZ position of the camera
-float x=0.0f,z=5.0f;
+float x = 0.0f, y = 0.0f, z = 5.0f;
 
 int currentPositionX = 512;
 int currentPositionY = 360;
@@ -34,21 +34,17 @@ void drawing (void) {
   glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
   gluPerspective( 85.0f, 1.0f, 0.1f, 100.0f );
-  //Cam position
-  //Target position
-  //Up position
-  // gluLookAt(	axisCamX+auxCamX, axisCamY+auxCamY, axisCamZ+auxCamZ,
-		// 		0.0f, 0.0f, 0.0f,
-		// 		0.0f, 1.0f, 0.0f);
-  gluLookAt(  x, 0.0f, z,
-        x+lx, 0.0f,  z+lz,
+
+  gluLookAt(  x, y, z,
+        x+lx, y+ly,  z+lz,
         0.0f, 1.0f,  0.0f);
 
   glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-  // DrawTriangle();
+
   DrawCube();
   DrawQuad();
+
   // Executa os comandos OpenGL
   glFlush();
 
@@ -86,11 +82,7 @@ void reshapeWindow (GLsizei w, GLsizei h) {
 // Callback function responsible by simple keys
 void simpleKeyboard (unsigned char key, int x, int y) {
   int auxChange = glutGetModifiers();
-  /**
-   *
-   * Motion keys
-   *
-   */
+
   float fraction = 0.03f;
   if (key == 'w') {
     // auxCamZ -= 0.1f;
@@ -101,86 +93,58 @@ void simpleKeyboard (unsigned char key, int x, int y) {
   if (key == 's') {
     // auxCamZ += 0.1f;
     x -= lx * fraction;
-    z -= lz * fraction;
+		z -= lz * fraction;
     glutPostRedisplay();
   }
   if (key == 'd') {
     // auxCamX += 0.1f;
+    angle += 0.05f;
+    lx = sin(angle);
+    lz = -cos(angle);
+    glutPostRedisplay();
   }
   if (key == 'a') {
     // auxCamX -= 0.1f;
+    angle -= 0.05f;
+    lx = sin(angle);
+    lz = -cos(angle);
+    glutPostRedisplay();
   }
-  /**
-   *
-   * Window options
-   *
-   */
-
   if (key == 27) {
     exit(0);
   }
   if ((key == 13) && GLUT_ACTIVE_ALT) {
     glutFullScreen();
   }
-  // if (key == 'A') {
-  //   glutReshapeWindow(700,500);
-  //   glutPositionWindow(100,100);
-  // }
-
-  /**
-   *
-   * Character options
-   *
-   */
-
-  //Running fast character
-  if (auxChange & GLUT_ACTIVE_SHIFT) {
-    std::cout << "RUN FAST" << '\n';
-  }
-  //Character crouching
-  if (auxChange & GLUT_ACTIVE_CTRL) {
-    std::cout << "CHARACTER CROUCHING" << '\n';
-  }
-  //ALT key plus other key pressed
-  if (auxChange & GLUT_ACTIVE_ALT) {
-    std::cout << "ALT IS PRESSED" << '\n';
-  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Callback function responsible by special keys
 void specialKeyboad (int key, int x, int y) {
-
   switch (key) {
-    case GLUT_KEY_UP:
-      break;
-    case GLUT_KEY_DOWN:
-      break;
-    case GLUT_KEY_RIGHT:
-      angle += 0.05f;
-      lx = sin(angle);
-      lz = -cos(angle);
-      glutPostRedisplay();
-      break;
-    case GLUT_KEY_LEFT:
-      angle -= 0.05f;
-      lx = sin(angle);
-      lz = -cos(angle);
-      glutPostRedisplay();
-      break;
   }
 }
 
 //Callback function responsible by mouse click
 void clickEventMouse (int button, int state, int x, int y) {
-  std::clog << "*** MOUSE CLICK EVENT" << '\n';
-
   if(state == GLUT_UP) {
-    std::clog << "UP BUTTON " + std::to_string(button) + " PRESSED" << '\n';
-    std::clog << "x: " << x << " Y: " << y << '\n';
-
   }
   if(state == GLUT_DOWN) {
-    std::clog << "DOWN BUTTON " + std::to_string(button) + " PRESSED" << '\n';
   }
 }
 
