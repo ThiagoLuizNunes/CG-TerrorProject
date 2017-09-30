@@ -106,24 +106,16 @@ void simpleKeyboard (unsigned char key, int x, int y) {
   }
   if (key == 'd') {
     // auxCamX += 0.1f;
-    // angle += 0.03f;
-    // lx = sin(angle);
-    // lz = -cos(angle);
-    // glutPostRedisplay();
   }
   if (key == 'a') {
     // auxCamX -= 0.1f;
-    // angle -= 0.03f;
-    // lx = sin(angle);
-    // lz = -cos(angle);
-    // glutPostRedisplay();
   }
   /**
    *
    * Window options
    *
    */
-  
+
   if (key == 27) {
     exit(0);
   }
@@ -140,7 +132,7 @@ void simpleKeyboard (unsigned char key, int x, int y) {
    * Character options
    *
    */
-  
+
   //Running fast character
   if (auxChange & GLUT_ACTIVE_SHIFT) {
     std::cout << "RUN FAST" << '\n';
@@ -157,17 +149,23 @@ void simpleKeyboard (unsigned char key, int x, int y) {
 
 //Callback function responsible by special keys
 void specialKeyboad (int key, int x, int y) {
-  std::cout << "*** Key handling special" << '\n';
 
   switch (key) {
-    case GLUT_KEY_F1:
-      std::cout << "*** Key F1 pressed" << '\n';
+    case GLUT_KEY_UP:
       break;
-    case GLUT_KEY_F2:
-      std::cout << "*** Key F2 pressed" << '\n';
+    case GLUT_KEY_DOWN:
       break;
-    case GLUT_KEY_F3:
-      std::cout << "*** Key F3 pressed" << '\n';
+    case GLUT_KEY_RIGHT:
+      angle += 0.05f;
+      lx = sin(angle);
+      lz = -cos(angle);
+      glutPostRedisplay();
+      break;
+    case GLUT_KEY_LEFT:
+      angle -= 0.05f;
+      lx = sin(angle);
+      lz = -cos(angle);
+      glutPostRedisplay();
       break;
   }
 }
@@ -184,25 +182,23 @@ void clickEventMouse (int button, int state, int x, int y) {
   if(state == GLUT_DOWN) {
     std::clog << "DOWN BUTTON " + std::to_string(button) + " PRESSED" << '\n';
   }
-
 }
 
 void mousePassiveMotion (int x, int y) {
-  if (x > currentPositionX) {
-    currentPositionX += x - currentPositionX;
-    angle += 0.01f;
-    lx = sin(angle);
-    lz = -cos(angle);
-    glutPostRedisplay();
-  } 
-  if (x < currentPositionX) {
-      currentPositionX -= currentPositionX - x;
-      angle -= 0.01f;
-      lx = sin(angle);
-      lz = -cos(angle);
-      glutPostRedisplay();
-  }
-  
+  // if (x > currentPositionX) {
+  //   currentPositionX += x - currentPositionX;
+  //   angle += 0.01f;
+  //   lx = sin(angle);
+  //   // lz = -cos(angle);
+  //   glutPostRedisplay();
+  // }
+  // if (x < currentPositionX) {
+  //     currentPositionX -= currentPositionX - x;
+  //     angle -= 0.01f;
+  //     lx = sin(angle);
+  //     // lz = -cos(angle);
+  //     glutPostRedisplay();
+  // }
 }
 
 void mouseEntry (int state) {
