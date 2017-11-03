@@ -2,7 +2,7 @@
 #define OBJECTS_H
 
 #include <iostream>
-#include <ifstream>
+#include <fstream>
 #include <string>
 
 extern "C" {
@@ -12,13 +12,13 @@ extern "C" {
 
 void loadObj (const std::string& fname) {
 	std::string line;
-	ifstream myfile (fname);
+	std::ifstream input (fname);
 
-	if (myfile.is_open()) {
-		while (getline (myfile,line)) {
+	if (input.is_open()) {
+		while (getline (input,line)) {
 			std::cout << line << '\n';
 		}
-		myfile.close();
+		input.close();
 	}
 	else {
 		std::cout << "Unable to open file";
