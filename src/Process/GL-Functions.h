@@ -76,6 +76,10 @@ void renderScene(void) {
 	// Draw ground
 	DrawGround();
 
+	// Draw teste.txt
+	std::string pathFile = "/teste.txt";
+	loadObj(pathFile);
+
   // Draw 36 SnowMen
 	for(int i = -3; i < 3; i++)
 		for(int j=-3; j < 3; j++) {

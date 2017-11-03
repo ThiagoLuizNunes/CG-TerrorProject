@@ -1,17 +1,18 @@
-#ifndef OBJECTS_H
+#ifndef OBJECTS_HloadObjt
 #define OBJECTS_H
 
-#include <fstream>
 #include <iostream>
+#include <ifstream>
+#include <string>
 
 extern "C" {
   #include <GL/gl.h>
   #include <GL/glut.h>
 }
 
-void loadObjt (const std::string& myfile) {
-	ifstream myfile;
-	myfile.open(fname)
+void loadObj (const std::string& fname) {
+	std::string line;
+	ifstream myfile (fname);
 
 	if (myfile.is_open()) {
 		while (getline (myfile,line)) {
