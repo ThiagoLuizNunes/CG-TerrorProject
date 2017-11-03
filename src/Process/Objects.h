@@ -1,9 +1,27 @@
 #ifndef OBJECTS_H
 #define OBJECTS_H
 
+#include <fstream>
+#include <iostream>
+
 extern "C" {
   #include <GL/gl.h>
   #include <GL/glut.h>
+}
+
+void loadObjt (const std::string& myfile) {
+	ifstream myfile;
+	myfile.open(fname)
+
+	if (myfile.is_open()) {
+		while (getline (myfile,line)) {
+			std::cout << line << '\n';
+		}
+		myfile.close();
+	}
+	else {
+		std::cout << "Unable to open file";
+	}
 }
 
 void DrawGround () {
