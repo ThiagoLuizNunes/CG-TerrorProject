@@ -77,9 +77,6 @@ void renderScene(void) {
 	DrawGround();
 
 	// Draw teste.txt
-	// std::string pathFile = "/teste.txt";
-	std::string pathFile = "Details.txt";
-	loadObj(pathFile);
 
   // Draw 36 SnowMen
 	for(int i = -3; i < 3; i++)

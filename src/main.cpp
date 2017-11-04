@@ -4,8 +4,15 @@ Project: CG-TerrorProject
 */
 #include "GL-Functions.h"
 #include <iostream>
+#include <string>
+
+const static std::string path;
+
 
 int main(int argc, char *argv[]) {
+
+  //std::string path = argv[1];
+ // std::cout << "Path comes from ARGV: " << path << '\n';
 
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);

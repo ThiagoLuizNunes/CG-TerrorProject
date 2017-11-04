@@ -1,4 +1,4 @@
-#ifndef OBJECTS_HloadObjt
+#ifndef OBJECTS_H
 #define OBJECTS_H
 
 #include <iostream>
