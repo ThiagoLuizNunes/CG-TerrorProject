@@ -14,6 +14,7 @@ int main(int argc, char *argv[]) {
   //std::string path = argv[1];
  // std::cout << "Path comes from ARGV: " << path << '\n';
 
+
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
   //Specifies the initial position

@@ -14,6 +14,12 @@ extern "C" {
 class GLFunctions {
 
 private:
+	std::string pathName;
+
+public:
+	GLFunctions(const std::string& path);
+	~GLFunctions();
+	
 	// angle of rotation for the camera direction
 	float angle = 0.0f;
 	// actual vector representing the camera's direction
@@ -25,12 +31,6 @@ private:
 	float deltaAngle = 0.0f;
 	float deltaMove = 0;
 
-	//std::string pathName;
-
-public:
-	GLFunctions(const std::string& path);
-	~GLFunctions();
-	
 	void changeSize(int w, int h);
 	void computePos(float deltaMove);
 	void computeDir(float deltaAngle);
