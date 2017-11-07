@@ -15,12 +15,12 @@ const static std::string path;
 int main(int argc, char *argv[]) {
 
   // std::string mypath = argv[1];
-  std::string mypath = "./objects/Details.txt";
+  std::string mypath = "./objects/teste.txt";
 
   FileManager* file_manager = nullptr;
  
     try {
-        file_manager = new FileManager(path); 
+        file_manager = new FileManager(mypath); 
     } catch (FileManagerException& exc) {
         std::cerr << "FileManagerException - what(): " << exc.what() << std::endl;
     }
