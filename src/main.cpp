@@ -3,6 +3,9 @@ Author: Thiago Luiz Nunes
 Project: CG-TerrorProject
 */
 #include "GL-Functions.h"
+#include "Objects.h"
+#include "FileManager.cpp"
+
 #include <iostream>
 #include <string>
 
@@ -11,9 +14,23 @@ const static std::string path;
 
 int main(int argc, char *argv[]) {
 
-  //std::string path = argv[1];
- // std::cout << "Path comes from ARGV: " << path << '\n';
+  // std::string mypath = argv[1];
+  std::string mypath = "./objects/Details.txt";
 
+  FileManager* file_manager = nullptr;
+ 
+    try {
+        file_manager = new FileManager(path); 
+    } catch (FileManagerException& exc) {
+        std::cerr << "FileManagerException - what(): " << exc.what() << std::endl;
+    }
+ 
+    if (file_manager != nullptr) {
+        std::clog << "First line: " << file_manager->getNextLine() << std::endl;
+        std::clog << "Second line: " << file_manager->getNextLine() << std::endl;
+ 
+        delete file_manager;
+    }
 
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);

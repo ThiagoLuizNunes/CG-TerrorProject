@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <iostream>
 #include <string>
 
 extern "C" {
@@ -12,13 +13,15 @@ extern "C" {
 
 void loadObj (const std::string& fname) {
 	std::string line;
-	std::ifstream input (fname);
+	std::ifstream iStream;
 
-	if (input.is_open()) {
-		while (getline (input,line)) {
+	iStream.open(fname, std::ios::in);
+
+	if (iStream.is_open()) {
+		while (getline (iStream,line)) {
 			std::cout << line << '\n';
 		}
-		input.close();
+		iStream.close();
 	}
 	else {
 		std::cout << "Unable to open file" << '\n';
