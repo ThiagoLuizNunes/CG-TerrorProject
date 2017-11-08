@@ -1,4 +1,5 @@
 #include "GlutManager.h"
+#include "GlutFunctions.h"
 
 GlutManager::GlutManager (int *argc, char** argv, int width, 
 	int height, const std::string& name) {
@@ -10,7 +11,7 @@ GlutManager::GlutManager (int *argc, char** argv, int width,
 	//Specifies the size at pixels; width and height
 	glutInitWindowSize(width,height);
 	//Create the window with described name
-	glutCreateWindow("oi");
+	glutCreateWindow(name.c_str());
 
 	/*Callback functions*/
 	glutDisplayFunc(renderScene);

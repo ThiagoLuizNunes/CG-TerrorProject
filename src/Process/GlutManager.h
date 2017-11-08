@@ -3,8 +3,6 @@
 
 #include <iostream>
 #include <string>
-#include "GlutFunctions.h"
-#include "Objects.h"
 
 class GlutManager {
 

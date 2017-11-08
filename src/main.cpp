@@ -32,6 +32,7 @@ int main(int argc, char *argv[]) {
  
         delete file_manager;
     }
+    
     std::string name = "TerrorOnTheHouse";
     GlutManager myGlut(&argc, argv, 1024, 720, name);
 
