@@ -43,8 +43,6 @@ public:
         if (first_space != std::string::npos)
             temp.erase(0, first_space + 1);
 
-        std::clog << "LINE: " << temp << std::endl;
-
         std::vector<float> tokens;
         std::istringstream ss(temp);
         std::string token;
