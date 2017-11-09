@@ -5,18 +5,24 @@
 #include <string>
 #include <vector>
 
+#include <glm/glm.hpp>
+#include <glm/vec2.hpp>
+#include <glm/vec3.hpp>
+
 class ObjectGL {
 
 private:
-	std::vector<std::string> vertices_;
-	std::vector<std::string> textures_;
+	std::vector<glm::vec3> vertices_; /* v */
+	std::vector<glm::vec2> textures_; /* vt */
+	std::vector<glm::vec3> normals_; /* vn */
 
 public:
-	ObjectGL (std::vector<std::string>& vertices, std::vector<std::string>& textures);
+	ObjectGL ();
 	~ObjectGL ();
 
-	std::vector<std::string> getVertices(void);
-	std::vector<std::string> getTextures(void);
+	// std::vector<glm::vec3> getVertices(void);
+	// std::vector<glm::vec2> getTextures(void);
+	// std::vector<glm::vec3> getNormals(void);
 };
 
 #endif
