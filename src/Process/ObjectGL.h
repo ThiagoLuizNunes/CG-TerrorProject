@@ -15,14 +15,15 @@ private:
 	std::vector<glm::vec3> vertices_; /* v */
 	std::vector<glm::vec2> textures_; /* vt */
 	std::vector<glm::vec3> normals_; /* vn */
+	std::vector<glm::vec3> triangles_; /* vn */
 
 public:
 	ObjectGL ();
 	~ObjectGL ();
 
-	// std::vector<glm::vec3> getVertices(void);
-	// std::vector<glm::vec2> getTextures(void);
-	// std::vector<glm::vec3> getNormals(void);
+	std::vector<glm::vec3> getVertices(void);
+	std::vector<glm::vec2> getTextures(void);
+	std::vector<glm::vec3> getNormals(void);
 };
 
 #endif
