@@ -2,7 +2,9 @@
 #include <fstream>
 #include <iostream>
 #include <exception>
- 
+#include <sstream>
+#include <vector>
+
 class FileManagerException:  public std::runtime_error{
 
 public:
@@ -32,5 +34,28 @@ public:
         std::string line;
         std::getline(this->file_manager_, line);
         return line;
+    }
+
+    std::vector<float> splitLine( std::string& line) {
+        std::string temp = line;
+        std::size_t first_space = line.find_first_of(" ");
+
+        if (first_space != std::string::npos)
+            temp.erase(0, first_space + 1);
+
+        std::clog << "LINE: " << temp << std::endl;
+
+        std::vector<float> tokens;
+        std::istringstream ss(temp);
+        std::string token;
+
+
+
+        while (std::getline(ss, token, ' ')) {
+            float f_token = strtof((token).c_str(), 0);
+            tokens.push_back(f_token);
+        }
+
+        return tokens;
     }
 };

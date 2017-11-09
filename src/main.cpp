@@ -34,15 +34,17 @@ int main(int argc, char *argv[]) {
 
         if (line.compare(0, 2, "v ") == 0) {// Catch vertex
           std::clog << "Vertex: " << line << std::endl;
+          std::vector<float> tokens = file_manager->splitLine(line);
+          std::clog << tokens.at(0) << " " << tokens.at(1) << " " << tokens.at(2) << std::endl;
         }
 
-        else if (line.compare(0,2,"vn") == 0) {  // Catch normal vectors
-          std::clog << "Normal vector : " << line << std::endl;
-        }
+        // else if (line.compare(0,2,"vn") == 0) {  // Catch normal vectors
+        //   std::clog << "Normal vector : " << line << std::endl;
+        // }
 
-        else if (line.compare(0, 2, "vt") == 0) { // Catch texture
-          std::clog << "Texture : " << line << std::endl;
-        }
+        // else if (line.compare(0, 2, "vt") == 0) { // Catch texture
+        //   std::clog << "Texture : " << line << std::endl;
+        // }
 
       } while (!line.empty());
  
