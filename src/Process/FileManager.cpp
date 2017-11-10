@@ -65,7 +65,7 @@ public:
         if (first_space != std::string::npos)
             temp.erase(0, first_space + 1);
         
-        /*----------  Split line at vector<string>  ----------*/
+        /*----------  Split line at a vector<string>  ----------*/
         std::vector<std::string> tokens;
         std::istringstream ss(temp);
         std::string token; 
