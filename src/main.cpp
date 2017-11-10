@@ -5,6 +5,7 @@ Project: CG-TerrorProject
 #include "FileManager.cpp"
 #include "GlutManager.h"
 #include "ObjectGL.h"
+#include "VertexGL.hpp"
 
 #include <iostream>
 #include <string>
@@ -36,6 +37,12 @@ int main(int argc, char *argv[]) {
         std::cerr << "FileManagerException - what(): " << exc.what() << std::endl;
     }
  
+    /**
+     *
+     * OPEN .OBGJ FILE SECTION
+     *
+     */
+
     if (file_manager != nullptr) {
       
       do {
@@ -86,6 +93,44 @@ int main(int argc, char *argv[]) {
         delete file_manager;
     }
     
+    /**
+     *
+     * VERTICES IN TRIANGLE SECTION
+     *
+     */
+    
+    int count = _myObject->getSizeFaces();
+
+    std::vector<glm::vec3> vertices_ = _myObject->getVertices(); 
+    std::vector<glm::vec3> normals_ = _myObject->getNormals(); 
+    std::vector<glm::vec2> textures_ = _myObject->getTextures();
+    std::vector< std::vector<int> > faces_ = _myObject->getFaces();
+
+    for (int i = 0; i < count; i++) {
+
+      VertexGL *v_first = nullptr;
+      VertexGL *v_second = nullptr;
+      VertexGL *v_third = nullptr;
+
+      std::vector<int> face = faces_.at(i);
+
+      v_first = new VertexGL(vertices_.at(face.at(0) - 1), normals_.at(face.at(2) - 1), textures_.at(face.at(1) - 1));
+      v_second = new VertexGL(vertices_.at(face.at(3) - 1), normals_.at(face.at(5) - 1), textures_.at(face.at(4) - 1));
+      v_third = new VertexGL(vertices_.at(face.at(6) - 1), normals_.at(face.at(8) - 1), textures_.at(face.at(7) - 1));
+
+      face.clear();
+      
+      delete v_first;
+      delete v_second;
+      delete v_third;
+    }
+
+    /**
+     *
+     * GLUT SECTION
+     *
+     */
+    
     std::string name = "TerrorOnTheHouse";
     GlutManager myGlut(&argc, argv, 1024, 720, name);
 
@@ -127,3 +172,27 @@ int main(int argc, char *argv[]) {
           // }
           // std::clog << std::endl;
           // _f++;
+      /*----------  Test block vertices in triangles  ----------*/
+      
+      // std::clog << i+1 <<"º " << "Triangle: ";
+      // for (int x = 0; x < face.size(); x++)
+      // {
+      //   std::clog << face.at(x) << " ";
+      // }
+
+      // std::clog << std::endl << std::endl;
+
+      // v_first->printAttributes(0);
+      // v_first->printAttributes(1);
+      // v_first->printAttributes(2);
+      // std::clog << std::endl;
+
+      // v_second->printAttributes(0);
+      // v_second->printAttributes(1);
+      // v_second->printAttributes(2);
+      // std::clog << std::endl;
+
+      // v_third->printAttributes(0);
+      // v_third->printAttributes(1);
+      // v_third->printAttributes(2);
+      // std::clog << std::endl;

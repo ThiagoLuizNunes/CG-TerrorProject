@@ -13,8 +13,8 @@ class ObjectGL {
 
 private:
 	std::vector<glm::vec3> vertices_; // v
-	std::vector<glm::vec3> normals_; // vn
 	std::vector<glm::vec2> textures_; // vt
+	std::vector<glm::vec3> normals_; // vn
 	std::vector< std::vector<int> > faces_; // f
 
 public:
@@ -30,6 +30,8 @@ public:
 	void putNormals(glm::vec3 const& normal);
 	void putTextures(glm::vec2 const& texture);
 	void putFaces(std::vector<int> face);
+
+	int getSizeFaces(void);
 };
 
 #endif
