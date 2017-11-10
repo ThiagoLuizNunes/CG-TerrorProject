@@ -22,6 +22,10 @@ std::vector< std::vector<int> > ObjectGL::getFaces (void) {
 	return this->faces_;
 }
 
+int ObjectGL::getSizeFaces(void) {
+	return this->faces_.size();
+}
+
 /*----------  VOID METHODS  ----------*/
 
 void ObjectGL::putVertices(glm::vec3 const& vertex) {
