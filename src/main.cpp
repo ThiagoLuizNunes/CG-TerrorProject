@@ -53,7 +53,7 @@ int main(int argc, char *argv[]) {
 
         }
 
-        else if (line.compare(0,2,"vn") == 0) {  // Catch normal vectors
+        else if (line.compare(0, 2, "vn") == 0) {  // Catch normal vectors
           
           _tokens = file_manager->splitLine(line, ' ');
           _normal.x = _tokens.at(0);
