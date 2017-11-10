@@ -36,8 +36,3 @@ void ObjectGL::putTextures(glm::vec2 const& texture) {
 void ObjectGL::putFaces(std::vector<int> face) {
 	this->faces_.push_back(face);
 }
-
-
-void ObjectGL::print(void) {
-	std::clog << "PRINT FUNCTION" << std::endl;
-}

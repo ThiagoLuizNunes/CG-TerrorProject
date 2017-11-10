@@ -22,6 +22,8 @@ int main(int argc, char *argv[]) {
   std::string line;
   
   std::vector<float> tokens;
+  std::vector<int> tokens_face;
+
   glm::vec3 _vertex;
   glm::vec3 _normal;
   glm::vec2 _texture;
@@ -30,6 +32,7 @@ int main(int argc, char *argv[]) {
 
   // std::vector<glm::vec3> _testeV , _testeVn;
   // std::vector<glm::vec2> _testeVt;
+  // std::vector< std::vector<int> > _testeFaces;
 
   /*----------  Test block  ----------*/
 
@@ -48,13 +51,14 @@ int main(int argc, char *argv[]) {
       // int _v = 0;
       // int _vn = 0;
       // int _vt = 0;
+      // int _f = 0;
 
       do {
 
         line = file_manager->getNextLine();
 
         if (line.compare(0, 2, "v ") == 0) {  // Catch vertex
-          tokens = file_manager->splitLine(line);
+          tokens = file_manager->splitLine(line, ' ');
 
           _vertex.x = tokens.at(0);
           _vertex.y = tokens.at(1);
@@ -71,7 +75,7 @@ int main(int argc, char *argv[]) {
         }
 
         else if (line.compare(0,2,"vn") == 0) {  // Catch normal vectors
-          tokens = file_manager->splitLine(line);
+          tokens = file_manager->splitLine(line, ' ');
           
           _normal.x = tokens.at(0);
           _normal.y = tokens.at(1);
@@ -88,7 +92,7 @@ int main(int argc, char *argv[]) {
         }
 
         else if (line.compare(0, 2, "vt") == 0) { // Catch texture
-          tokens = file_manager->splitLine(line);
+          tokens = file_manager->splitLine(line, ' ');
 
           _texture.x = tokens.at(0);
           _texture.y = tokens.at(1);
@@ -101,6 +105,22 @@ int main(int argc, char *argv[]) {
           // _vt++;
 
           tokens.clear();
+        }
+        else if (line.compare(0, 2, "f ") == 0) {
+          tokens_face = file_manager->splitLineInteger(line, ' ');
+
+          _myObject->putFaces(tokens_face);
+          
+          /* Test block */
+          // _testeFaces = _myObject->getFaces();
+          // for (int i = 0; i < _testeFaces.at(_f).size(); i++)
+          // {
+          //   std::clog << _testeFaces.at(_f).at(i) << " ";
+          // }
+          // std::clog << std::endl;
+          // _f++;
+
+          tokens_face.clear(); 
         }
 
       } while (!line.empty());

@@ -30,10 +30,6 @@ public:
 	void putNormals(glm::vec3 const& normal);
 	void putTextures(glm::vec2 const& texture);
 	void putFaces(std::vector<int> face);
-
-	/* Teste */
-	void print(void);
-
 };
 
 #endif

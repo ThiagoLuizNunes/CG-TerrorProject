@@ -36,24 +36,60 @@ public:
         return line;
     }
 
-    std::vector<float> splitLine( std::string& line) {
+    std::vector<float> splitLine( std::string& line, char c) {
         std::string temp = line;
         std::size_t first_space = line.find_first_of(" ");
 
+        /*----------  Erasing first space +1  ----------*/
         if (first_space != std::string::npos)
             temp.erase(0, first_space + 1);
 
+        /*----------  Split line at vector<string>  ----------*/
         std::vector<float> tokens;
         std::istringstream ss(temp);
         std::string token;
 
-
-
-        while (std::getline(ss, token, ' ')) {
+        while (std::getline(ss, token, c)) {
             float f_token = strtof((token).c_str(), 0);
             tokens.push_back(f_token);
         }
 
         return tokens;
+    }
+
+    std::vector<int> splitLineInteger( std::string& line, char c) {
+        std::string temp = line;
+        std::size_t first_space = line.find_first_of(" ");
+
+        /*----------  Erasing first space +1  ----------*/
+        if (first_space != std::string::npos)
+            temp.erase(0, first_space + 1);
+        
+        /*----------  Split line at vector<string>  ----------*/
+        std::vector<std::string> tokens;
+        std::istringstream ss(temp);
+        std::string token; 
+
+        while (std::getline(ss, token, c)) {
+            tokens.push_back(token);
+        }
+
+        /*----------  Convert vector<string> to vector<int>  ----------*/
+        std::vector<int> _tokens;
+        for (int i = 0; i < tokens.size(); i++) {
+
+            std::string _temp = tokens.at(i);
+            std::istringstream _ss(_temp);
+            std::string _token; 
+
+            while (std::getline(_ss, _token, '/')) {
+                int result;
+                std::stringstream(_token) >> result;
+                _tokens.push_back(result);
+            }
+            
+        }
+
+        return _tokens;
     }
 };
