@@ -6,14 +6,18 @@
 class TriangleGL {
 
 private:
-	VertexGL first_vertex_;
-	VertexGL second_vertex_;
-	VertexGL thrid_vertex_;
+	VertexGL *first_vertex_ = nullptr;
+	VertexGL *second_vertex_ = nullptr;
+	VertexGL *thrid_vertex_ = nullptr;
 
 public:
-	TriangleGL();
+	// TriangleGL(VertexGL &first, VertexGL &second, VertexGL &thrid);
+	TriangleGL(VertexGL *first, VertexGL *second, VertexGL *thrid);
 	~TriangleGL();
 	
+	VertexGL* getFirstVertex(void);
+	VertexGL* getSecondVertex(void);
+	VertexGL* getThirdVertex(void);
 };
 
 #endif

@@ -6,6 +6,7 @@ Project: CG-TerrorProject
 #include "GlutManager.h"
 #include "ObjectGL.h"
 #include "VertexGL.hpp"
+#include "TriangleGL.hpp"
 
 #include <iostream>
 #include <string>
@@ -14,7 +15,8 @@ Project: CG-TerrorProject
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
 
-extern ObjectGL *_myObject = new ObjectGL;
+ObjectGL *_myObject = new ObjectGL;
+std::vector<TriangleGL> _myCube;
 
 int main(int argc, char *argv[]) {
 
@@ -108,23 +110,21 @@ int main(int argc, char *argv[]) {
 
     for (int i = 0; i < count; i++) {
 
-      VertexGL *v_first = nullptr;
-      VertexGL *v_second = nullptr;
-      VertexGL *v_third = nullptr;
-
       std::vector<int> face = faces_.at(i);
 
-      v_first = new VertexGL(vertices_.at(face.at(0) - 1), normals_.at(face.at(2) - 1), textures_.at(face.at(1) - 1));
-      v_second = new VertexGL(vertices_.at(face.at(3) - 1), normals_.at(face.at(5) - 1), textures_.at(face.at(4) - 1));
-      v_third = new VertexGL(vertices_.at(face.at(6) - 1), normals_.at(face.at(8) - 1), textures_.at(face.at(7) - 1));
+      VertexGL v_first(vertices_.at(face.at(0) - 1), normals_.at(face.at(2) - 1), textures_.at(face.at(1) - 1));
+      VertexGL v_second(vertices_.at(face.at(3) - 1), normals_.at(face.at(5) - 1), textures_.at(face.at(4) - 1));
+      VertexGL v_third(vertices_.at(face.at(6) - 1), normals_.at(face.at(8) - 1), textures_.at(face.at(7) - 1));
+
+      TriangleGL triangle(&v_first, &v_second, &v_third);
+      _myCube.push_back(triangle);
 
       face.clear();
       
-      delete v_first;
-      delete v_second;
-      delete v_third;
     }
 
+    std::clog << "Triangle faces: " << _myCube.size() << std::endl;
+    
     /**
      *
      * GLUT SECTION
@@ -173,26 +173,15 @@ int main(int argc, char *argv[]) {
           // std::clog << std::endl;
           // _f++;
       /*----------  Test block vertices in triangles  ----------*/
+      // VertexGL *v_first = nullptr;
+      // VertexGL *v_second = nullptr;
+      // VertexGL *v_third = nullptr;
+      // TriangleGL *triangle = nullptr;
+
+      // v_first = new VertexGL(vertices_.at(face.at(0) - 1), normals_.at(face.at(2) - 1), textures_.at(face.at(1) - 1));
+      // v_second = new VertexGL(vertices_.at(face.at(3) - 1), normals_.at(face.at(5) - 1), textures_.at(face.at(4) - 1));
+      // v_third = new VertexGL(vertices_.at(face.at(6) - 1), normals_.at(face.at(8) - 1), textures_.at(face.at(7) - 1));
       
-      // std::clog << i+1 <<"º " << "Triangle: ";
-      // for (int x = 0; x < face.size(); x++)
-      // {
-      //   std::clog << face.at(x) << " ";
-      // }
-
-      // std::clog << std::endl << std::endl;
-
-      // v_first->printAttributes(0);
-      // v_first->printAttributes(1);
-      // v_first->printAttributes(2);
-      // std::clog << std::endl;
-
-      // v_second->printAttributes(0);
-      // v_second->printAttributes(1);
-      // v_second->printAttributes(2);
-      // std::clog << std::endl;
-
-      // v_third->printAttributes(0);
-      // v_third->printAttributes(1);
-      // v_third->printAttributes(2);
-      // std::clog << std::endl;
+      // delete v_first;
+      // delete v_second;
+      // delete v_third;
