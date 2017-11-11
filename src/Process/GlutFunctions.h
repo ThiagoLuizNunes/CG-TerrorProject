@@ -75,15 +75,30 @@ void renderScene(void) {
 
 	// Draw ground
 	DrawGround();
+	glPushMatrix();
+		glTranslatef(-5, 1.5, -5);
+		DrawTriangle();
+		glPopMatrix();
+
+
+	glPushMatrix();
+		glTranslatef(5, 1, -5);
+		DrawCube();
+		glPopMatrix();
 
   	// Draw 36 SnowMen
-	for(int i = -3; i < 3; i++)
-		for(int j=-3; j < 3; j++) {
-			glPushMatrix();
-			glTranslatef(i*10.0,0,j * 10.0);
-			DrawSnowMan();
-			glPopMatrix();
-		}
+  	glPushMatrix();
+		glTranslatef(0, 0, -5);
+		DrawSnowMan();
+		glPopMatrix();
+
+	// for(int i = -3; i < 3; i++)
+	// 	for(int j=-3; j < 3; j++) {
+	// 		glPushMatrix();
+	// 		glTranslatef(i*10.0,0,j * 10.0);
+	// 		DrawSnowMan();
+	// 		glPopMatrix();
+	// 	}
 
 	glutSwapBuffers();
 }
@@ -95,10 +110,10 @@ void initializes (void) {
 void pressKey(int key, int xx, int yy) {
 
 	switch (key) {
-		case GLUT_KEY_LEFT : deltaAngle = -0.01f; break;
-		case GLUT_KEY_RIGHT : deltaAngle = 0.01f; break;
-		case GLUT_KEY_UP : deltaMove = 0.5f; break;
-		case GLUT_KEY_DOWN : deltaMove = -0.5f; break;
+		case GLUT_KEY_LEFT : deltaAngle = -0.07f; break;
+		case GLUT_KEY_RIGHT : deltaAngle = 0.07f; break;
+		case GLUT_KEY_UP : deltaMove = 1.5f; break;
+		case GLUT_KEY_DOWN : deltaMove = -1.5f; break;
 	}
 }
 

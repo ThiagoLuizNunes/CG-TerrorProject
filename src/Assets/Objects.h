@@ -11,23 +11,6 @@ extern "C" {
   #include <GL/glut.h>
 }
 
-void loadObj (const std::string& fname) {
-	std::string line;
-	std::ifstream iStream;
-
-	iStream.open(fname, std::ios::in);
-
-	if (iStream.is_open()) {
-		while (getline (iStream,line)) {
-			std::cout << line << '\n';
-		}
-		iStream.close();
-	}
-	else {
-		std::cout << "Unable to open file" << '\n';
-	}
-}
-
 void DrawGround () {
   glColor3f(0.9f, 0.9f, 0.9f);
 	glBegin(GL_QUADS);
@@ -98,10 +81,14 @@ void DrawCubeFilled (void) {
 
 }
 
+// void DrawObj(std::vector<TriangleGL> _myCube) {
+// 	glColor3f()
+// }
+
 void DrawCube (void) {
   float size1 = 0.5f;
 
-	glColor3f(1.0f, 1.0f, 1.0);
+	glColor3f(0.0f, 1.0f, 0.0);
 
 	glBegin(GL_LINES);
 		// bottom
