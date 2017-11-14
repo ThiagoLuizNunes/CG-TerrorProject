@@ -1,6 +1,10 @@
 #include <iostream>
 #include <string>
+#include <vector>
+
 #include "Objects.h"
+#include "VertexGL.hpp"
+#include "TriangleGL.hpp"
 
 extern "C" {
   #include <GL/gl.h>
@@ -18,6 +22,17 @@ float x=0.0f, z=5.0f;
 //when no key is being presses
 float deltaAngle = 0.0f;
 float deltaMove = 0;
+
+std::vector<TriangleGL> _cube;
+
+void setObject(std::vector<TriangleGL> object) {
+	_cube = object;
+
+	TriangleGL temp = _cube.at(0);
+	VertexGL *temp_v = temp.getFirstVertex();
+	// temp_v->printAttributes(0);
+	// std::clog << std::endl;
+}
 
 void changeSize(int w, int h) {
 
@@ -75,22 +90,30 @@ void renderScene(void) {
 
 	// Draw ground
 	DrawGround();
+
+	// Test obj
+	glPushMatrix();
+		glTranslatef(0, 1, 0);
+		DrawObject(_cube);
+		// _cube.at(0).getFirstVertex()->printAttributes(0);
+	glPopMatrix();
+
 	glPushMatrix();
 		glTranslatef(-5, 1.5, -5);
 		DrawTriangle();
-		glPopMatrix();
+	glPopMatrix();
 
 
 	glPushMatrix();
 		glTranslatef(5, 1, -5);
 		DrawCube();
-		glPopMatrix();
+	glPopMatrix();
 
   	// Draw 36 SnowMen
   	glPushMatrix();
 		glTranslatef(0, 0, -5);
 		DrawSnowMan();
-		glPopMatrix();
+	glPopMatrix();
 
 	// for(int i = -3; i < 3; i++)
 	// 	for(int j=-3; j < 3; j++) {
