@@ -15,15 +15,15 @@ Project: CG-TerrorProject
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
 
-ObjectGL *_myObject = new ObjectGL;
-std::vector<TriangleGL> _myCube;
-
 int main(int argc, char *argv[]) {
 
   // std::string mypath = argv[1];
   std::string mypath = "./objects/teste.txt";
+  // std::string mypath = "./objects/farmhouse_obj.obj";
   std::string line;
   
+  ObjectGL *_myObject = new ObjectGL;
+  std::vector< std::vector<TriangleGL> > _allObjects;
   std::vector<float> _tokens;
   std::vector<int> _tokens_face;
 
@@ -108,6 +108,8 @@ int main(int argc, char *argv[]) {
     std::vector<glm::vec2> textures_ = _myObject->getTextures();
     std::vector< std::vector<int> > faces_ = _myObject->getFaces();
 
+    std::vector<TriangleGL> _triangles;
+
     for (int i = 0; i < count; i++) {
 
       std::vector<int> face = faces_.at(i);
@@ -116,14 +118,14 @@ int main(int argc, char *argv[]) {
       VertexGL v_second(vertices_.at(face.at(3) - 1), normals_.at(face.at(5) - 1), textures_.at(face.at(4) - 1));
       VertexGL v_third(vertices_.at(face.at(6) - 1), normals_.at(face.at(8) - 1), textures_.at(face.at(7) - 1));
 
-      TriangleGL triangle(&v_first, &v_second, &v_third);
-      _myCube.push_back(triangle);
+      TriangleGL _triangle(&v_first, &v_second, &v_third);
+      _triangles.push_back(_triangle);
 
       face.clear();
       
     }
-
-    std::clog << "Triangle faces: " << _myCube.size() << std::endl;
+    _allObjects.push_back(_triangles);
+    // std::clog << "Triangle faces: " << _triangles.size() << std::endl;
     
     /**
      *
@@ -132,7 +134,7 @@ int main(int argc, char *argv[]) {
      */
     
     std::string name = "TerrorOnTheHouse";
-    GlutManager myGlut(&argc, argv, 1024, 720, name);
+    GlutManager myGlut(&argc, argv, 1024, 720, name, _allObjects);
 
   return 0;
 }

@@ -5,29 +5,36 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <vector>
+
+#include "TriangleGL.hpp"
+#include "VertexGL.hpp"
 
 extern "C" {
   #include <GL/gl.h>
   #include <GL/glut.h>
 }
 
-void loadObj (const std::string& fname) {
-	std::string line;
-	std::ifstream iStream;
+void DrawObject (std::vector<TriangleGL> obj) {
 
-	iStream.open(fname, std::ios::in);
+	int count  = obj.size();
+	// std::clog << count << std::endl;
 
-	if (iStream.is_open()) {
-		while (getline (iStream,line)) {
-			std::cout << line << '\n';
-		}
-		iStream.close();
+	glColor3f(0.0f,0.0f,1.0f); //blue color
+	for (int i = 0; i < count; i++) {
+		glBegin(GL_TRIANGLES);
+
+			glm::vec3 first = obj.at(i).getFirstVertex()->getAxes();
+			glm::vec3 second = obj.at(i).getSecondVertex()->getAxes();
+			glm::vec3 thrid = obj.at(i).getThirdVertex()->getAxes();
+
+		    glVertex3f(first.x, first.y, first.z);
+		    glVertex3f(second.x, second.y, second.z);
+		    glVertex3f(thrid.x, thrid.y, thrid.z);
+	  	glEnd();
 	}
-	else {
-		std::cout << "Unable to open file" << '\n';
-	}
+
 }
-
 void DrawGround () {
   glColor3f(0.9f, 0.9f, 0.9f);
 	glBegin(GL_QUADS);
@@ -101,7 +108,7 @@ void DrawCubeFilled (void) {
 void DrawCube (void) {
   float size1 = 0.5f;
 
-	glColor3f(1.0f, 1.0f, 1.0);
+	glColor3f(0.0f, 1.0f, 0.0);
 
 	glBegin(GL_LINES);
 		// bottom
