@@ -12,28 +12,21 @@ extern "C" {
   #include <math.h>
 }
 
-// angle of rotation for the camera direction
-float angle = 0.0f;
-// actual vector representing the camera's direction
-float lx=0.0f,lz=-1.0f;
-// XZ position of the camera
-float x=0.0f, z=5.0f;
-// the key states. These variables will be zero
-//when no key is being presses
-float deltaAngle = 0.0f;
-float deltaMove = 0;
+float angle = 0.0f; // angle of rotation for the camera direction
+float lx=0.0f,lz=-1.0f; // actual vector representing the camera's direction
+float x=0.0f, z=5.0f; // XZ position of the camera
+float deltaAngle = 0.0f; // the key states. These variables will be zero 
+float deltaMove = 0; // when no key is being presses
 
 std::vector<TriangleGL> _cube;
 
 void setObject(std::vector<TriangleGL> object) {
 	_cube = object;
-
-	TriangleGL temp = _cube.at(0);
-	VertexGL *temp_v = temp.getFirstVertex();
+	// TriangleGL temp = _cube.at(0);
+	// VertexGL *temp_v = temp.getFirstVertex();
 	// temp_v->printAttributes(0);
 	// std::clog << std::endl;
 }
-
 void changeSize(int w, int h) {
 
 	// Prevent a divide by zero, when window is too short
@@ -41,42 +34,31 @@ void changeSize(int w, int h) {
 	if (h == 0)
 		h = 1;
 	float ratio =  w * 1.0 / h;
+	
+	glMatrixMode(GL_PROJECTION); // Use the Projection Matrix
+	glLoadIdentity(); // Reset Matrix
+	glViewport(0, 0, w, h); // Set the viewport to be the entire window
+	gluPerspective(45.0f, ratio, 0.1f, 100.0f); // Set the correct perspective.
+	glMatrixMode(GL_MODELVIEW); // Get Back to the Modelview
 
-	// Use the Projection Matrix
-	glMatrixMode(GL_PROJECTION);
-
-	// Reset Matrix
-	glLoadIdentity();
-
-	// Set the viewport to be the entire window
-	glViewport(0, 0, w, h);
-
-	// Set the correct perspective.
-	gluPerspective(45.0f, ratio, 0.1f, 100.0f);
-
-	// Get Back to the Modelview
-	glMatrixMode(GL_MODELVIEW);
 }
-
 void computePos(float deltaMove) {
-
 	x += deltaMove * lx * 0.1f;
 	z += deltaMove * lz * 0.1f;
 }
-
 void computeDir(float deltaAngle) {
-
 	angle += deltaAngle;
 	lx = sin(angle);
 	lz = -cos(angle);
 }
-
 void renderScene(void) {
 
-	if (deltaMove)
+	if (deltaMove) {
 		computePos(deltaMove);
-	if (deltaAngle)
+	}
+	if (deltaAngle) {
 		computeDir(deltaAngle);
+	}
 
 	// Clear Color and Depth Buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -126,10 +108,9 @@ void renderScene(void) {
 	glutSwapBuffers();
 }
 void initializes (void) {
-  //Define background color of the visualization window with black color
+  // Define background color of the visualization window with black color
   glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 }
-
 void pressKey(int key, int xx, int yy) {
 
 	switch (key) {
@@ -139,7 +120,6 @@ void pressKey(int key, int xx, int yy) {
 		case GLUT_KEY_DOWN : deltaMove = -1.5f; break;
 	}
 }
-
 void releaseKey(int key, int x, int y) {
 
 	switch (key) {

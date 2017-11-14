@@ -35,7 +35,6 @@ public:
         std::getline(this->file_manager_, line);
         return line;
     }
-
     std::vector<float> splitLine( std::string& line, char c) {
         std::string temp = line;
         std::size_t first_space = line.find_first_of(" ");
@@ -53,10 +52,8 @@ public:
             float f_token = strtof((token).c_str(), 0);
             tokens.push_back(f_token);
         }
-
         return tokens;
     }
-
     std::vector<int> splitLineInteger( std::string& line, char c) {
         std::string temp = line;
         std::size_t first_space = line.find_first_of(" ");
@@ -73,7 +70,6 @@ public:
         while (std::getline(ss, token, c)) {
             tokens.push_back(token);
         }
-
         /*----------  Convert vector<string> to vector<int>  ----------*/
         std::vector<int> _tokens;
         for (int i = 0; i < tokens.size(); i++) {
@@ -87,9 +83,7 @@ public:
                 std::stringstream(_token) >> result;
                 _tokens.push_back(result);
             }
-            
         }
-
         return _tokens;
     }
 };

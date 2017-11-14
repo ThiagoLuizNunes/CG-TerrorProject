@@ -6,14 +6,14 @@ GlutManager::GlutManager (int *argc, char** argv, int width,
 
 	glutInit(argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-	//Specifies the initial position
+	// Specifies the initial position
 	glutInitWindowPosition(10,10);
-	//Specifies the size at pixels; width and height
+	// Specifies the size at pixels; width and height
 	glutInitWindowSize(width,height);
-	//Create the window with described name
+	// Create the window with described name
 	glutCreateWindow(name.c_str());
 
-	//Set all objects
+	// Set all objects
 	setObject(allObjects.at(0));
 	// std::clog << "ALL OBJECTS SIZE : " << allObjects.at(0).size() << std::endl;
 
