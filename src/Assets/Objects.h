@@ -15,7 +15,7 @@ extern "C" {
   #include <GL/glut.h>
 }
 
-void DrawObjt (std::vector<TriangleGL> obj) {
+void DrawObject (std::vector<TriangleGL> obj) {
 
 	int count  = obj.size();
 	// std::clog << count << std::endl;
