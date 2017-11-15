@@ -1,8 +1,6 @@
-#include "ObjectGL.h"
+#include "ObjectGL.hpp"
 
-ObjectGL::ObjectGL() {
-}
-
+ObjectGL::ObjectGL() {}
 ObjectGL::~ObjectGL() {}
 
 /*----------  GET METHODS  ----------*/

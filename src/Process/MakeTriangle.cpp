@@ -84,10 +84,9 @@ MakeTriangle::MakeTriangle(std::string& mypath, std::string& texture_path) {
       this->_triangles.push_back(_triangle);
 
       int width, height;
-      unsigned char* image =
-          SOIL_load_image(texture_path.c_str(), &width, &height, 0, SOIL_LOAD_RGB);
+      unsigned char* image = SOIL_load_image(texture_path.c_str(), &width, &height, 0, SOIL_LOAD_RGB);
+      this->_texture = new TextureGL(width, height, image);
 
-      // _texture = new TextureGL(width, height, image);
       face.clear();
     }
 }

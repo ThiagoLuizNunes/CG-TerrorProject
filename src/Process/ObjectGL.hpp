@@ -1,5 +1,5 @@
-#ifndef OBJECT_GL_H
-#define OBJECT_GL_H
+#ifndef OBJECT_GL_HPP
+#define OBJECT_GL_HPP
 
 #include <iostream>
 #include <string>

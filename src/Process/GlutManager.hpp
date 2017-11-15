@@ -1,5 +1,5 @@
-#ifndef GLUT_MANAGER_H
-#define GLUT_MANAGER_H
+#ifndef GLUT_MANAGER_HPP
+#define GLUT_MANAGER_HPP
 
 #include <iostream>
 #include <string>
@@ -9,8 +9,6 @@
 
 class GlutManager {
 
-private:
-	
 public:
 	GlutManager(int* argc, char** argv, int width, int height, const std::string& name,
 				std::vector< std::vector<TriangleGL> > allObjects, 

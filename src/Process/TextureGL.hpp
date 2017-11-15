@@ -1,8 +1,8 @@
 #ifndef TEXTURE_GL_HPP
 #define TEXTURE_GL_HPP
 
-class TextureGL
-{
+class TextureGL {
+	
 private:
 	int width, height;
 	unsigned char* image;
