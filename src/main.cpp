@@ -6,7 +6,6 @@ Project: TerrorOnTheHouse
 #include "TriangleGL.hpp"
 #include "MakeTriangle.hpp"
 #include "TextureGL.hpp"
-#include "SOIL.h"
 
 #include <iostream>
 #include <string>
