@@ -2,7 +2,7 @@
 Author: Thiago Luiz Nunes
 Project: TerrorOnTheHouse
 */
-#include "GlutManager.h"
+#include "GlutManager.hpp"
 #include "TriangleGL.hpp"
 #include "MakeTriangle.hpp"
 #include "TextureGL.hpp"

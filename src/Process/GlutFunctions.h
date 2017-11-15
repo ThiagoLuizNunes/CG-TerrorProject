@@ -26,10 +26,6 @@ TextureGL *_cubeTexture = nullptr;
 void setObject(std::vector<TriangleGL> object, TextureGL *texture) {
 	_cube = object;
 	_cubeTexture = texture;
-	// TriangleGL temp = _cube.at(0);
-	// VertexGL *temp_v = temp.getFirstVertex();
-	// temp_v->printAttributes(0);
-	// std::clog << std::endl;
 }
 void changeSize(int w, int h) {
 	// Prevent a divide by zero, when window is too short
@@ -86,7 +82,6 @@ void renderScene(void) {
 		glTranslatef(-5, 1.5, -5);
 		DrawTriangle();
 	glPopMatrix();
-
 
 	glPushMatrix();
 		glTranslatef(5, 1, -5);

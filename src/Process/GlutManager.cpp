@@ -1,4 +1,4 @@
-#include "GlutManager.h"
+#include "GlutManager.hpp"
 #include "GlutFunctions.h"
 
 GlutManager::GlutManager (int *argc, char** argv, int width, int height, const std::string& name, 
