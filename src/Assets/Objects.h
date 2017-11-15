@@ -9,41 +9,21 @@
 
 #include "TriangleGL.hpp"
 #include "VertexGL.hpp"
-#include "TextureGL.hpp"
 
 extern "C" {
   #include <GL/gl.h>
   #include <GL/glut.h>
 }
 
-void DrawObject (std::vector<TriangleGL> obj, TextureGL *texture) {
+void DrawObject (std::vector<TriangleGL> obj) {
 	int count  = obj.size();
 	glColor3f(0.0f,0.0f,1.0f); //blue color
-	glEnable(GL_TEXTURE_2D);
-	// glTexImage2D(texture);
+	// glEnable(GL_TEXTURE_2D);
+	// glTexImage2D();
 	// glTexEnvi(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
 
-	// for (int i = 0; i < count; i++) {
-	// 	glBegin(GL_TRIANGLES);
-
-	// 		glm::vec3 first = obj.at(i).getFirstVertex()->getAxes();
-	// 		glm::vec3 second = obj.at(i).getSecondVertex()->getAxes();
-	// 		glm::vec3 third = obj.at(i).getThirdVertex()->getAxes();
-
-	// 		glm::vec2 first_vt = obj.at(i).getFirstVertex()->getTexture();
-	// 		glm::vec2 second_vt = obj.at(i).getSecondVertex()->getTexture();
-	// 		glm::vec2 third_vt = obj.at(i).getThirdVertex()->getTexture();
-
-	// 	    // glTexCoord2f(first_vt.x, first_vt.y); 
-	// 	    glVertex3f(first.x, first.y, first.z);
-	// 	    // glTexCoord2f(second_vt.x, second_vt.y); 
-	// 	    glVertex3f(second.x, second.y, second.z);
-	// 	    // glTexCoord2f(third_vt.x, third_vt.y); 
-	// 	    glVertex3f(third.x, third.y, third.z);
-	//   	glEnd();
-	// }
 	for (int i = 0; i < count; i++) {
-		glBegin(GL_LINES);
+		glBegin(GL_TRIANGLES);
 
 			glm::vec3 first = obj.at(i).getFirstVertex()->getAxes();
 			glm::vec3 second = obj.at(i).getSecondVertex()->getAxes();

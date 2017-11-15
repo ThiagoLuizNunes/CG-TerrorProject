@@ -1,5 +1,5 @@
-#ifndef VERTEX_GL_HPP
-#define VERTEX_GL_HPP
+#ifndef VERTEX_GL_H
+#define VERTEX_GL_H
 
 #include <iostream>
 #include <glm/glm.hpp>
