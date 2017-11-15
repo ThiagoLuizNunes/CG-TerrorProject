@@ -1,5 +1,5 @@
-#ifndef TRIANGLE_GL_H
-#define TRIANGLE_GL_H
+#ifndef TRIANGLE_GL_HPP
+#define TRIANGLE_GL_HPP
 
 #include "VertexGL.hpp"
 

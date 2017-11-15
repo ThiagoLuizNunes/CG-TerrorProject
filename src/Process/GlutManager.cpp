@@ -1,8 +1,9 @@
 #include "GlutManager.h"
 #include "GlutFunctions.h"
 
-GlutManager::GlutManager (int *argc, char** argv, int width, 
-	int height, const std::string& name, std::vector< std::vector<TriangleGL> > allObjects) {
+GlutManager::GlutManager (int *argc, char** argv, int width, int height, const std::string& name, 
+	                      std::vector< std::vector<TriangleGL> > allObjects, 
+	                      std::vector<TextureGL*> allTextures) {
 
 	glutInit(argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
@@ -14,7 +15,7 @@ GlutManager::GlutManager (int *argc, char** argv, int width,
 	glutCreateWindow(name.c_str());
 
 	// Set all objects
-	setObject(allObjects.at(0));
+	setObject(allObjects.at(0), allTextures.at(0));
 	// std::clog << "ALL OBJECTS SIZE : " << allObjects.at(0).size() << std::endl;
 
 	/*Callback functions*/
@@ -27,7 +28,7 @@ GlutManager::GlutManager (int *argc, char** argv, int width,
 
 	// glutMouseFunc(clickEventMouse);
 	// glutMotionFunc();
-	// glutPassiveMotionFunc(mousePassiveMotion);
+	glutPassiveMotionFunc(mousePassiveMotion);
 	// glutEntryFunc(mouseEntry);
 	// glutIdleFunc();
 
