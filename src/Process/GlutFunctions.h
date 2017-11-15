@@ -5,6 +5,7 @@
 #include "Objects.h"
 #include "VertexGL.hpp"
 #include "TriangleGL.hpp"
+#include "TextureGL.hpp"
 
 extern "C" {
   #include <GL/gl.h>
@@ -13,22 +14,24 @@ extern "C" {
 }
 
 float angle = 0.0f; // angle of rotation for the camera direction
-float lx=0.0f,lz=-1.0f; // actual vector representing the camera's direction
+float lx=0.0f,lz=-1.0f, ly=0.0f; // actual vector representing the camera's direction
 float x=0.0f, z=5.0f; // XZ position of the camera
 float deltaAngle = 0.0f; // the key states. These variables will be zero 
 float deltaMove = 0; // when no key is being presses
+float y = 5.0f;
 
 std::vector<TriangleGL> _cube;
+TextureGL *_cubeTexture = nullptr;
 
-void setObject(std::vector<TriangleGL> object) {
+void setObject(std::vector<TriangleGL> object, TextureGL *texture) {
 	_cube = object;
+	_cubeTexture = texture;
 	// TriangleGL temp = _cube.at(0);
 	// VertexGL *temp_v = temp.getFirstVertex();
 	// temp_v->printAttributes(0);
 	// std::clog << std::endl;
 }
 void changeSize(int w, int h) {
-
 	// Prevent a divide by zero, when window is too short
 	// (you cant make a window of zero width).
 	if (h == 0)
@@ -40,7 +43,6 @@ void changeSize(int w, int h) {
 	glViewport(0, 0, w, h); // Set the viewport to be the entire window
 	gluPerspective(45.0f, ratio, 0.1f, 100.0f); // Set the correct perspective.
 	glMatrixMode(GL_MODELVIEW); // Get Back to the Modelview
-
 }
 void computePos(float deltaMove) {
 	x += deltaMove * lx * 0.1f;
@@ -66,8 +68,8 @@ void renderScene(void) {
 	// Reset transformations
 	glLoadIdentity();
 	// Set the camera
-	gluLookAt(	x, 1.0f, z,
-				x+lx, 1.0f,  z+lz,
+	gluLookAt(	x, y , z,
+				x+lx, y+ly,  z+lz,
 				0.0f, 1.0f,  0.0f);
 
 	// Draw ground
@@ -76,7 +78,7 @@ void renderScene(void) {
 	// Test obj
 	glPushMatrix();
 		glTranslatef(0, 1, 0);
-		DrawObject(_cube);
+		DrawObject(_cube, _cubeTexture);
 		// _cube.at(0).getFirstVertex()->printAttributes(0);
 	glPopMatrix();
 
@@ -96,14 +98,6 @@ void renderScene(void) {
 		glTranslatef(0, 0, -5);
 		DrawSnowMan();
 	glPopMatrix();
-
-	// for(int i = -3; i < 3; i++)
-	// 	for(int j=-3; j < 3; j++) {
-	// 		glPushMatrix();
-	// 		glTranslatef(i*10.0,0,j * 10.0);
-	// 		DrawSnowMan();
-	// 		glPopMatrix();
-	// 	}
 
 	glutSwapBuffers();
 }
@@ -138,4 +132,28 @@ void simpleKeyboard (unsigned char key, int x, int y) {
   if ((key == 13) && GLUT_ACTIVE_ALT) {
     glutFullScreen();
   }
+  if (key == 119 || key == 'w') {
+  	ly += 0.2f;
+  	glutPostRedisplay();
+  }
+  if (key == 115 || key == 's') {
+  	ly -= 0.2f;
+  	glutPostRedisplay();
+  }
+}
+void mousePassiveMotion (int x, int y) {
+  // if (x > currentPositionX) {
+  //   currentPositionX += x - currentPositionX;
+  //   angle += 0.01f;
+  //   lx = sin(angle);
+  //   // lz = -cos(angle);
+  //   glutPostRedisplay();
+  // }
+  // if (x < currentPositionX) {
+  //     currentPositionX -= currentPositionX - x;
+  //     angle -= 0.01f;
+  //     lx = sin(angle);
+  //     // lz = -cos(angle);
+  //     glutPostRedisplay();
+  // }
 }
