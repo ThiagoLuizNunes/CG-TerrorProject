@@ -1,18 +1,28 @@
 #include "TextureGL.hpp"
 
-TextureGL::TextureGL(int w, int h, unsigned char* img) {
+TextureGL::TextureGL(int w, int h, int ch ,unsigned char* img) {
 	this->width = w;
 	this->height = h;
-	this->image = img;
+	this->channels = ch;
+	this->data = img;
 }
 TextureGL::~TextureGL() {}
 
-int TextureGL::getWitdhTexture(void){
+int TextureGL::getWidth(void){
 	return this->width;
 }
-int TextureGL::getHeightTexture(void){
+int TextureGL::getHeight(void){
 	return this->height;
 }
-unsigned char* TextureGL::getImage(void){
-	return this->image;
+int TextureGL::getChannels(void){
+	return this->channels;
+}
+unsigned char* TextureGL::getData(void){
+	return this->data;
+}
+void TextureGL::printAtt(void) {
+	std::clog << "SOIL texture loading with succes!" << std::endl;
+	std::clog << "    Image width........ : " << this->width << std::endl;
+	std::clog << "    Image height....... : " << this->height << std::endl;
+	std::clog << "    Image channels..... : " << this->channels << std::endl;
 }
