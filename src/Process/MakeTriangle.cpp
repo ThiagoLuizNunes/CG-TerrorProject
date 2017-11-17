@@ -82,10 +82,20 @@ MakeTriangle::MakeTriangle(std::string& mypath, std::string& texture_path) {
 
       TriangleGL _triangle(&v_first, &v_second, &v_third);
       this->_triangles.push_back(_triangle);
-
-      int width, height;
-      unsigned char* image = SOIL_load_image(texture_path.c_str(), &width, &height, 0, SOIL_LOAD_RGB);
-      this->_texture = new TextureGL(width, height, image);
+      /**
+       *
+       * TEXTURE
+       *
+       */
+      int width, height, channels;
+      unsigned char* data = 
+            SOIL_load_image(texture_path.c_str(), &width, &height, &channels, SOIL_LOAD_AUTO);
+      if (data) {
+        this->_texture = new TextureGL(width, height, channels, data);
+      } 
+      else {
+        std::cerr << "SOIL loading error: " << SOIL_last_result() << std::endl;
+      }
 
       face.clear();
     }
