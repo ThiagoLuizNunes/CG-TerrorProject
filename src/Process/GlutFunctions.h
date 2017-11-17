@@ -93,7 +93,7 @@ void renderScene(void) {
 	DrawGround(); // Draw ground
 
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	glColor3f(0.6f, 0.48f, 0.2f);
+	// glColor3f(0.6f, 0.48f, 0.2f);
 
 	glPushMatrix(); // Test obj
 		glTranslatef(0, 1, 0);
@@ -110,17 +110,6 @@ void renderScene(void) {
 		glTranslatef(0, 0, -5);
 		DrawSnowMan();
 	glPopMatrix();
-
-	glEnable(GL_TEXTURE_1D); // Active texture
-    glTranslatef(2, 1, -5);
-
-	glBegin(GL_QUADS);
-		glTexCoord1f(0); glVertex3f(0.0f,1.0f,0.0f);
-		glTexCoord1f(1.0); glVertex3f(0.0f, 0.0f, 0.0f);
-		glTexCoord1f(1.0); glVertex3f(1.0f,0.0f, 0.0f);
-		glTexCoord1f(0); glVertex3f(1.0f,1.0f,0.0f);
-	glEnd();
-	glDisable(GL_TEXTURE_1D);
 	
 	glFlush();
 	glutSwapBuffers();
