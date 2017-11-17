@@ -24,7 +24,6 @@ public:
 
 	void setTextureID(GLint id);
 	void printAtt(void);
-	
 };
 
 #endif

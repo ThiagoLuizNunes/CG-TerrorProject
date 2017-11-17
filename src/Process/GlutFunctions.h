@@ -20,8 +20,8 @@ float deltaAngle = 0.0f;         // the key states. These variables will be zero
 float deltaMove = 0;             // when no key is being presses
 float y = 5.0f;
 
-std::vector<TriangleGL> _obj;
-TextureGL *_obj_texture = nullptr;
+std::vector< std::vector<TriangleGL> > _allObjects;
+std::vector<TextureGL*> _allTextures;
 
 GLuint texture_id;
 unsigned char* img;
@@ -29,24 +29,28 @@ int img_width;
 int img_height;
 int img_channels;
 
-void setObject(std::vector<TriangleGL> object, TextureGL *texture) {
-	_obj = object;
-	_obj_texture = texture;
+void setObject(std::vector< std::vector<TriangleGL> > objects, 
+	           std::vector<TextureGL*> textures) {
 
-	img = texture->getData();
-	img_width = texture->getWidth(); 
-	img_height = texture->getHeight();
-	img_channels = texture->getChannels();
+	_allObjects = objects;
+	_allTextures = textures;
 
-	glGenTextures( 1, &texture_id );
-	glBindTexture( GL_TEXTURE_2D, texture_id );
-	gluBuild2DMipmaps( GL_TEXTURE_2D, GL_RGB, img_width, img_height, GL_RGBA, GL_UNSIGNED_BYTE, img);
+	for (int i = 0; i < objects.size(); ++i)
+	{
+		img = textures.at(i)->getData();
+		img_width = textures.at(i)->getWidth(); 
+		img_height = textures.at(i)->getHeight();
+		img_channels = textures.at(i)->getChannels();
 
-	texture->setTextureID(texture_id);
+		glGenTextures( 1, &texture_id );
+		glBindTexture( GL_TEXTURE_2D, texture_id );
+		gluBuild2DMipmaps( GL_TEXTURE_2D, GL_RGB, img_width, img_height, GL_RGBA, GL_UNSIGNED_BYTE, img);
 
-	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-	glLightModelf(GL_LIGHT_MODEL_COLOR_CONTROL,GL_SEPARATE_SPECULAR_COLOR);
+		textures.at(i)->setTextureID(texture_id);
 
+		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+		glLightModelf(GL_LIGHT_MODEL_COLOR_CONTROL,GL_SEPARATE_SPECULAR_COLOR);
+	}
 }
 void changeSize(int w, int h) {
 	// Prevent a divide by zero, when window is too short
@@ -93,12 +97,12 @@ void renderScene(void) {
 
 	glPushMatrix(); // Test obj
 		glTranslatef(0, 1, 0);
-		DrawObject(_obj, _obj_texture);	
+		DrawObject(_allObjects.at(0), _allTextures.at(0));
 	glPopMatrix();
 	
 	glPushMatrix();																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									
-		glTranslatef(5, 1, -5);
-		DrawCube();
+		glTranslatef(5, 2, -5);
+		DrawObject(_allObjects.at(1), _allTextures.at(1));
 	glPopMatrix();
 
   	// Draw 36 SnowMen

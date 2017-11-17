@@ -12,7 +12,7 @@ GlutManager::GlutManager (int *argc, char** argv, int width, int height, const s
 	glutCreateWindow(name.c_str()); // Create the window with described name
 
 	// Set all objects
-	setObject(allObjects.at(0), allTextures.at(0));
+	setObject(allObjects, allTextures);
 
 	// Callback functions
 	glutDisplayFunc(renderScene);

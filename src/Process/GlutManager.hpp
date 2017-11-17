@@ -14,7 +14,6 @@ public:
 				std::vector< std::vector<TriangleGL> > allObjects, 
 				std::vector<TextureGL*> allTextures);
 	~GlutManager();
-	
 };
 
 #endif
