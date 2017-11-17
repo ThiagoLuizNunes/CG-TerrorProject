@@ -88,6 +88,9 @@ void renderScene(void) {
 
 	DrawGround(); // Draw ground
 
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glColor3f(0.6f, 0.48f, 0.2f);
+
 	glPushMatrix(); // Test obj
 		glTranslatef(0, 1, 0);
 		DrawObject(_obj, _obj_texture);	
