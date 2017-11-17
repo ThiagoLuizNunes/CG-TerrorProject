@@ -20,6 +20,12 @@ int TextureGL::getChannels(void){
 unsigned char* TextureGL::getData(void){
 	return this->data;
 }
+GLint TextureGL::getTextureID(void) {
+	return this->texture_id;
+}
+void TextureGL::setTextureID(GLint id) {
+	this->texture_id = id;
+}
 void TextureGL::printAtt(void) {
 	std::clog << "SOIL texture loading with succes!" << std::endl;
 	std::clog << "    Image width........ : " << this->width << std::endl;

@@ -20,12 +20,33 @@ float deltaAngle = 0.0f;         // the key states. These variables will be zero
 float deltaMove = 0;             // when no key is being presses
 float y = 5.0f;
 
-std::vector<TriangleGL> _cube;
-TextureGL *_cubeTexture = nullptr;
+std::vector<TriangleGL> _obj;
+TextureGL *_obj_texture = nullptr;
+
+GLuint texture_id;
+unsigned char* img;
+int img_width;
+int img_height;
+int img_channels;
 
 void setObject(std::vector<TriangleGL> object, TextureGL *texture) {
-	_cube = object;
-	_cubeTexture = texture;
+	_obj = object;
+	_obj_texture = texture;
+
+	img = texture->getData();
+	img_width = texture->getWidth(); 
+	img_height = texture->getHeight();
+	img_channels = texture->getChannels();
+
+	glGenTextures( 1, &texture_id );
+	glBindTexture( GL_TEXTURE_2D, texture_id );
+	gluBuild2DMipmaps( GL_TEXTURE_2D, GL_RGB, img_width, img_height, GL_RGBA, GL_UNSIGNED_BYTE, img);
+
+	texture->setTextureID(texture_id);
+
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	glLightModelf(GL_LIGHT_MODEL_COLOR_CONTROL,GL_SEPARATE_SPECULAR_COLOR);
+
 }
 void changeSize(int w, int h) {
 	// Prevent a divide by zero, when window is too short
@@ -59,10 +80,9 @@ void renderScene(void) {
 		computeDir(deltaAngle);
 	}
 
-	
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear Color and Depth Buffers
 	glLoadIdentity();                                   // Reset transformations
-	gluLookAt(	x, y , z,
+	gluLookAt(	x, y , z,																																														
 				x+lx, y+ly,  z+lz,
 				0.0f, 1.0f,  0.0f);                     // Set the camera
 
@@ -70,15 +90,10 @@ void renderScene(void) {
 
 	glPushMatrix(); // Test obj
 		glTranslatef(0, 1, 0);
-		DrawObject(_cube, _cubeTexture);
+		DrawObject(_obj, _obj_texture);	
 	glPopMatrix();
 	
-	glPopMatrix(); // Test texture
-		glTranslatef(2, 1, -5);
-		DrawQuad();
-	glPopMatrix();
-
-	glPushMatrix();
+	glPushMatrix();																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									
 		glTranslatef(5, 1, -5);
 		DrawCube();
 	glPopMatrix();
@@ -89,11 +104,24 @@ void renderScene(void) {
 		DrawSnowMan();
 	glPopMatrix();
 
+	glEnable(GL_TEXTURE_1D); // Active texture
+    glTranslatef(2, 1, -5);
+
+	glBegin(GL_QUADS);
+		glTexCoord1f(0); glVertex3f(0.0f,1.0f,0.0f);
+		glTexCoord1f(1.0); glVertex3f(0.0f, 0.0f, 0.0f);
+		glTexCoord1f(1.0); glVertex3f(1.0f,0.0f, 0.0f);
+		glTexCoord1f(0); glVertex3f(1.0f,1.0f,0.0f);
+	glEnd();
+	glDisable(GL_TEXTURE_1D);
+	
+	glFlush();
 	glutSwapBuffers();
+	glutPostRedisplay();
 }
 void initializes (void) {
   // Define background color of the visualization window with black color
-  glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);	
 }
 void pressKey(int key, int xx, int yy) {
 

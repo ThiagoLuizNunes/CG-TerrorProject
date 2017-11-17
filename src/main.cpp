@@ -15,6 +15,7 @@ int main(int argc, char *argv[]) {
   // std::string mypath = argv[1];
   // std::string mypath = "./objects/Crate/Crate1.obj";
   std::string cube_obj = "./objects/teste.txt";
+  // std::string scene_texture = "./objects/ICG_scene_001/ufpb.png";
   std::string scene_texture = "./objects/ICG_scene_001/parede.jpg";
   std::string scene_obj = "./objects/ICG_scene_001/ICG_scene_001.obj";
 
