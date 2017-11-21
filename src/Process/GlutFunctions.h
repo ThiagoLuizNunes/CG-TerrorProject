@@ -102,7 +102,7 @@ void renderScene(void) {
 	
 	glPushMatrix();																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									
 		glTranslatef(5, 2, -5);
-		DrawObject(_allObjects.at(1), _allTextures.at(1));
+		// DrawObject(_allObjects.at(1), _allTextures.at(1));
 	glPopMatrix();
 
   	// Draw 36 SnowMen
