@@ -46,10 +46,14 @@ void setObject(std::vector< std::vector<TriangleGL> > objects,
 		glBindTexture( GL_TEXTURE_2D, texture_id );
 		gluBuild2DMipmaps( GL_TEXTURE_2D, GL_RGB, img_width, img_height, GL_RGBA, GL_UNSIGNED_BYTE, img);
 
+	    // glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // MAG - LINEAR
+		// glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); // MINI - MIPMAP
+		
+		// glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+		
 		textures.at(i)->setTextureID(texture_id);
 
-		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-		glLightModelf(GL_LIGHT_MODEL_COLOR_CONTROL,GL_SEPARATE_SPECULAR_COLOR);
+		// glLightModelf(GL_LIGHT_MODEL_COLOR_CONTROL,GL_SEPARATE_SPECULAR_COLOR);
 	}
 }
 void changeSize(int w, int h) {
@@ -121,15 +125,17 @@ void renderScene(void) {
 	glPopMatrix();
 
 	glPushMatrix(); // Draw desk																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
-		// glTranslatef(5, 2, -5);
+		glTranslatef(19.2, 0, 17.2);
 		DrawObject(_allObjects.at(5), _allTextures.at(5));
 	glPopMatrix();
 
 	glPushMatrix(); // Draw paintings																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
-		// glTranslatef(5, 2, -5);
+		glTranslatef(19.2, 0, 18.85);
 		DrawObject(_allObjects.at(6), _allTextures.at(6));
+	glPopMatrix();
+
+	glPushMatrix(); // Draw paintings																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
 		DrawObject(_allObjects.at(7), _allTextures.at(7));
-		// DrawObject(_allObjects.at(8), _allTextures.at(8));
 	glPopMatrix();
 
   	// Draw 36 SnowMen
@@ -173,11 +179,11 @@ void simpleKeyboard (unsigned char key, int x, int y) {
   if ((key == 13) && GLUT_ACTIVE_ALT) {
     glutFullScreen();
   }
-  if (key == 119 || key == 'w') {
+  if (key == 'W' || key == 'w') {
   	ly += 0.2f;
   	glutPostRedisplay();
   }
-  if (key == 115 || key == 's') {
+  if (key == 'S' || key == 's') {
   	ly -= 0.2f;
   	glutPostRedisplay();
   }
