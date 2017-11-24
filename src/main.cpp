@@ -12,17 +12,24 @@ Project: TerrorOnTheHouse
 
 int main(int argc, char *argv[]) {
 
-  std::string maze_obj = "./objects/maze/maze.obj";
-  std::string maze_texture = "./objects/maze/maze-wall.jpg";
+  std::string wall_obj = "./objects/wall/wall.obj";
+  std::string wall_texture = "./objects/wall/wall.jpg";
+
+  std::string floor_obj = "./objects/floor/floor.obj";
+  std::string floor_texture = "./objects/floor/floor.jpg";
+
 
   std::vector< std::vector<TriangleGL> > _allObjects;
   std::vector<TextureGL*> _allTextures;
 
-  MakeTriangle _maze(maze_obj, maze_texture);
+  MakeTriangle _wall(wall_obj, wall_texture);
+  MakeTriangle _floor(floor_obj, floor_texture);
 
-  _allObjects.push_back(_maze.getTriangles());
+  _allObjects.push_back(_wall.getTriangles());
+  _allObjects.push_back(_floor.getTriangles());
 
-  _allTextures.push_back(_maze.getTexture());
+  _allTextures.push_back(_wall.getTexture());
+  _allTextures.push_back(_floor.getTexture());
 
   std::string name = "TerrorOnTheHouse";
   GlutManager myGlut(&argc, argv, 1024, 720, name, _allObjects, _allTextures);
