@@ -18,7 +18,7 @@ float lx=0.0f,lz=-1.0f, ly=0.0f; // actual vector representing the camera's dire
 float x=0.0f, z=5.0f;            // XZ position of the camera
 float deltaAngle = 0.0f;         // the key states. These variables will be zero 
 float deltaMove = 0;             // when no key is being presses
-float y = 5.0f;
+float y = 2.0f;
 
 std::vector< std::vector<TriangleGL> > _allObjects;
 std::vector<TextureGL*> _allTextures;
@@ -95,14 +95,19 @@ void renderScene(void) {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	// glColor3f(0.6f, 0.48f, 0.2f);
 
-	glPushMatrix(); // Test obj
+	glPushMatrix(); // Draw maze
 		// glTranslatef(0, 1, 0);
 		DrawObject(_allObjects.at(0), _allTextures.at(0));
 	glPopMatrix();
 	
-	glPushMatrix();																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									
+	glPushMatrix(); // Draw floor																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
 		// glTranslatef(5, 2, -5);
 		DrawObject(_allObjects.at(1), _allTextures.at(1));
+	glPopMatrix();
+
+	glPushMatrix(); // Draw ceiling																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
+		// glTranslatef(5, 2, -5);
+		DrawObject(_allObjects.at(2), _allTextures.at(2));
 	glPopMatrix();
 
   	// Draw 36 SnowMen
