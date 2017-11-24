@@ -18,7 +18,7 @@ float lx=0.0f,lz=-1.0f, ly=0.0f; // actual vector representing the camera's dire
 float x=0.0f, z=5.0f;            // XZ position of the camera
 float deltaAngle = 0.0f;         // the key states. These variables will be zero 
 float deltaMove = 0;             // when no key is being presses
-float y = 2.0f;
+float y = 3.0f;
 
 std::vector< std::vector<TriangleGL> > _allObjects;
 std::vector<TextureGL*> _allTextures;
@@ -108,6 +108,28 @@ void renderScene(void) {
 	glPushMatrix(); // Draw ceiling																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
 		// glTranslatef(5, 2, -5);
 		DrawObject(_allObjects.at(2), _allTextures.at(2));
+	glPopMatrix();
+
+	glPushMatrix(); // Draw doors																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
+		// glTranslatef(5, 2, -5);
+		DrawObject(_allObjects.at(3), _allTextures.at(3));
+	glPopMatrix();
+
+	glPushMatrix(); // Draw doors																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
+		// glTranslatef(5, 2, -5);
+		DrawObject(_allObjects.at(4), _allTextures.at(4));
+	glPopMatrix();
+
+	glPushMatrix(); // Draw desk																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
+		// glTranslatef(5, 2, -5);
+		DrawObject(_allObjects.at(5), _allTextures.at(5));
+	glPopMatrix();
+
+	glPushMatrix(); // Draw paintings																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
+		// glTranslatef(5, 2, -5);
+		DrawObject(_allObjects.at(6), _allTextures.at(6));
+		DrawObject(_allObjects.at(7), _allTextures.at(7));
+		// DrawObject(_allObjects.at(8), _allTextures.at(8));
 	glPopMatrix();
 
   	// Draw 36 SnowMen
