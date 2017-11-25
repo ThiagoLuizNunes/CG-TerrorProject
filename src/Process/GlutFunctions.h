@@ -119,7 +119,7 @@ void renderScene(void) {
 		DrawObject(_allObjects.at(3), _allTextures.at(3));
 	glPopMatrix();
 
-	glPushMatrix(); // Draw doors																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
+	glPushMatrix(); // Draw doors lock																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																						
 		// glTranslatef(5, 2, -5);
 		DrawObject(_allObjects.at(4), _allTextures.at(4));
 	glPopMatrix();
@@ -136,6 +136,10 @@ void renderScene(void) {
 
 	glPushMatrix(); // Draw paintings																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
 		DrawObject(_allObjects.at(7), _allTextures.at(7));
+	glPopMatrix();
+
+	glPushMatrix(); // Draw lamp																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
+		// DrawObject(_allObjects.at(8), _allTextures.at(8));
 	glPopMatrix();
 
   	// Draw 36 SnowMen

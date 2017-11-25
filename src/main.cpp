@@ -21,13 +21,14 @@ int main(int argc, char *argv[]) {
   std::string ceiling_obj = "./objects/ceiling/ceiling.obj";
   std::string ceiling_texture = "./objects/ceiling/ceiling.jpg";
 
-  std::string lamp_obj = "./objects/lamp/lamp.obj"; // SO MANY TRiANGLES
-  std::string lamp_texture = "./objects/lamp/lamp.jpg"; // SO MANY TRiANGLES
+  // std::string lamp_obj = "./objects/lamp/lampada.obj"; // SO MANY TRiANGLES
+  // std::string lamp_texture = "./objects/lamp/lamp.jpg"; // SO MANY TRiANGLES
 
   std::string door_obj = "./objects/door/door.obj";
   std::string door_texture = "./objects/door/door.jpg";
 
-  std::string door_lock_obj = "./objects/door_lock/door_lock.obj";
+  // std::string door_lock_obj = "./objects/door_lock/door_lock.obj";
+  std::string door_lock_obj = "./objects/door_lock/fechadura.obj";
   std::string door_lock_texture = "./objects/door_lock/door_lock.jpg";
 
   std::string desk_obj = "./objects/desk/desk.obj";
@@ -54,7 +55,7 @@ int main(int argc, char *argv[]) {
   MakeTriangle _painting01(painting01_obj, painting01_texture);
   // MakeTriangle _painting02(painting02_obj, painting02_texture); // JPEG NOT SUPPORTED
   MakeTriangle _painting03(painting03_obj, painting03_texture);
-  //MakeTriangle _lamp(lamp_obj, lamp_texture); // SO MANY TRiANGLES
+  // MakeTriangle _lamp(lamp_obj, lamp_texture); // SO MANY TRiANGLES
 
   _allObjects.push_back(_wall.getTriangles());
   _allObjects.push_back(_floor.getTriangles());
@@ -65,7 +66,7 @@ int main(int argc, char *argv[]) {
   _allObjects.push_back(_painting01.getTriangles());
   // _allObjects.push_back(_painting02.getTriangles()); // JPEG NOT SUPPORTED
   _allObjects.push_back(_painting03.getTriangles());
-  //_allObjects.push_back(_lamp.getTriangles()); // SO MANY TRiANGLES
+  // _allObjects.push_back(_lamp.getTriangles()); // SO MANY TRiANGLES
 
   _allTextures.push_back(_wall.getTexture());
   _allTextures.push_back(_floor.getTexture());
@@ -76,7 +77,7 @@ int main(int argc, char *argv[]) {
   _allTextures.push_back(_painting01.getTexture());
   // _allTextures.push_back(_painting02.getTexture()); // JPEG NOT SUPPORTED
   _allTextures.push_back(_painting03.getTexture());
-  //_allTextures.push_back(_lamp.getTexture()); // SO MANY TRiANGLES
+  // _allTextures.push_back(_lamp.getTexture()); // SO MANY TRiANGLES
 
   std::string name = "TerrorOnTheHouse";
   GlutManager myGlut(&argc, argv, 1024, 720, name, _allObjects, _allTextures);
