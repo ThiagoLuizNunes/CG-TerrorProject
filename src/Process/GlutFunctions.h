@@ -29,6 +29,67 @@ int img_width;
 int img_height;
 int img_channels;
 
+// Create light components.
+//GLfloat ambientLight0[] = { 0.2f, 0.2f, 0.2f, 1.0f };
+GLfloat diffuseLight0[] = { 0.8f, 0.8f, 0.8f, 1.0f };
+GLfloat specularLight0[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+GLfloat position0[] = { 10.0f, 0.0f, 5.2f, 1.0f };
+GLfloat spot_direction[] = {10.0f, 0.0f, 5.2f};
+GLfloat kc = 10;
+bool light_status = true;
+
+// Create light components.
+//GLfloat ambientLight1[] = { 0.2f, 0.2f, 0.2f, 1.0f };
+GLfloat diffuseLight1[] = { 0.8f, 0.8f, 0.8f, 1.0f };
+GLfloat specularLight1[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+GLfloat position1[] = { 13.0f, 13.0f, 5.2f, 1.0f };
+GLfloat spot_direction1[] = {13.0f, 13.0f, 5.2f};
+
+// Create light components 2.
+GLfloat ambientLight2[] = {0.2f, 0.2f, 0.2f, 1.0f };
+GLfloat diffuseLight2[] = { 0.8f, 0.8f, 0.8f, 1.0f };
+GLfloat specularLight2[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+GLfloat position2[] = { 18.0f, 18.0f, 5.2f, 1.0f };
+GLfloat spot_direction2[] = {18.0f, 18.0f, 1.0f};
+
+// Create light components 3
+GLfloat diffuseLight3[] = { 0.8f, 0.8f, 0.8f, 1.0f };
+GLfloat specularLight3[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+GLfloat position3[] = { 22.0f, 22.0f, 5.2f, 1.0f };
+GLfloat spot_direction3[] = {22.0f, 22.0f, 5.2f};
+
+// Create light components 4.
+GLfloat diffuseLight4[] = { 0.8f, 0.8f, 0.8f, 1.0f };
+GLfloat specularLight4[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+GLfloat position4[] = { 22.0f, -22.0f, 5.2f, 1.0f };
+GLfloat spot_direction4[] = {22.0f, -22.0f, 5.2f};
+
+// Create light components 5.
+GLfloat diffuseLight5[] = { 0.8f, 0.8f, 0.8f, 1.0f };
+GLfloat specularLight5[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+GLfloat position5[] = { -10.0f, 0.0f, 5.2f, 1.0f };
+GLfloat spot_direction5[] = {-10.0f, 0.0f, 5.2f};
+
+// Create light components 6.
+GLfloat ambientLight6[] = { 0.2f, 0.2f, 0.2f, 1.0f };
+GLfloat diffuseLight6[] = { 0.8f, 0.8f, 0.8f, 1.0f };
+GLfloat specularLight6[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+GLfloat position6[] = { -13.0f, -13.0f, 5.2f, 1.0f };
+GLfloat spot_direction6[] = {-13.0f, -13.0f, 5.2f};
+
+// Create light components 7.
+GLfloat diffuseLight7[] = { 0.8f, 0.8f, 0.8f, 1.0f };
+GLfloat specularLight7[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+GLfloat position7[] = { -18.0f, -18.0f, 5.2f, 1.0f };
+GLfloat spot_direction7[] = {-18.0f, -18.0f, 5.2f};
+
+// Create light components 8.
+// 10.0, 0.0, 5.2
+GLfloat diffuseLight8[] = { 0.8f, 0.8f, 0.8f, 1.0f };
+GLfloat specularLight8[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+GLfloat position8[] = { 0.0f, 0.0f, 0.0f, 0.0f };
+GLfloat spot_direction8[] = {-18.0f, -18.0f, 5.2f};
+
 void setObject(std::vector< std::vector<TriangleGL> > objects,
 	           std::vector<TextureGL*> textures) {
 
@@ -47,6 +108,32 @@ void setObject(std::vector< std::vector<TriangleGL> > objects,
 		gluBuild2DMipmaps( GL_TEXTURE_2D, GL_RGB, img_width, img_height, GL_RGBA, GL_UNSIGNED_BYTE, img);
 		textures.at(i)->setTextureID(texture_id);
 	}
+}
+void lightControl(bool status) {
+  if (status == true) {
+    kc = 8;
+    light_status = false;
+    glutPostRedisplay();
+    std::clog << "LIGHT FALSE" << std::endl;
+  }
+  else {
+    kc = 20;
+    light_status = true;
+    glutPostRedisplay();
+    std::clog << "LIGHT TRUE" << std::endl;
+  }
+}
+void fearSpace(float position) {
+  if (position = -10) {
+    kc = 30;
+    std::clog << "FEAR SPACE ZONE" << std::endl;
+    glutPostRedisplay();
+  }
+  else {
+    kc = 10;
+    std::clog << "OUT FEAT SPACE" << std::endl;
+    glutPostRedisplay();
+  }
 }
 void changeSize(int w, int h) {
 	// Prevent a divide by zero, when window is too short
@@ -97,6 +184,7 @@ void renderScene(void) {
   glEnable(GL_LIGHT5);
   glEnable(GL_LIGHT6);
   glEnable(GL_LIGHT7);
+  // glEnable(GL_LIGHT8);
   glEnable(GL_NORMALIZE);
   glEnable(GL_SMOOTH);
   //glEnable(GL_FLAT);
@@ -108,35 +196,17 @@ void renderScene(void) {
   glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR,specref);
   glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,50);
 
-  //atenuação da luzes
-  GLfloat kc = 8;
-
   glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
-
-  // Create light components.
-  //GLfloat ambientLight0[] = { 0.2f, 0.2f, 0.2f, 1.0f };
-  GLfloat diffuseLight0[] = { 0.8f, 0.8f, 0.8f, 1.0f };
-  GLfloat specularLight0[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-  GLfloat position0[] = { 10.0f, 0.0f, 5.2f, 1.0f };
-  GLfloat spot_direction[] = {10.0f, 0.0f, 5.2f};
-
 
   // Assign created components to GL_LIGHT0
   //glLightfv(GL_LIGHT0, GL_AMBIENT, ambientLight0);
   glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight0);
   glLightfv(GL_LIGHT0, GL_SPECULAR, specularLight0);
   glLightfv(GL_LIGHT0, GL_POSITION, position0);
-  glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, kc );
+  glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, kc);
   glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, 10.0);
   glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, spot_direction);
   glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 180.0);
-
-  // Create light components.
-  //GLfloat ambientLight1[] = { 0.2f, 0.2f, 0.2f, 1.0f };
-  GLfloat diffuseLight1[] = { 0.8f, 0.8f, 0.8f, 1.0f };
-  GLfloat specularLight1[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-  GLfloat position1[] = { 13.0f, 13.0f, 5.2f, 1.0f };
-  GLfloat spot_direction1[] = {13.0f, 13.0f, 5.2f};
 
   // Assign created components to GL_LIGHT1.
   glLightfv(GL_LIGHT1, GL_DIFFUSE, diffuseLight1);
@@ -146,14 +216,6 @@ void renderScene(void) {
   glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 10.0);
   glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, spot_direction1);
   glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 180.0);
-
-  /**************************/
-  // Create light components 2.
-  GLfloat ambientLight2[] = {0.2f, 0.2f, 0.2f, 1.0f };
-  GLfloat diffuseLight2[] = { 0.8f, 0.8f, 0.8f, 1.0f };
-  GLfloat specularLight2[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-  GLfloat position2[] = { 18.0f, 18.0f, 5.2f, 1.0f };
-  GLfloat spot_direction2[] = {18.0f, 18.0f, 1.0f};
 
   // Assign created components to GL_LIGHT2.
   glLightfv(GL_LIGHT2, GL_AMBIENT, ambientLight2);
@@ -165,13 +227,6 @@ void renderScene(void) {
   glLightfv(GL_LIGHT2, GL_SPOT_DIRECTION, spot_direction2);
   glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, 180.0);
 
-  /**************************/
-  // Create light components 3
-  GLfloat diffuseLight3[] = { 0.8f, 0.8f, 0.8f, 1.0f };
-  GLfloat specularLight3[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-  GLfloat position3[] = { 22.0f, 22.0f, 5.2f, 1.0f };
-  GLfloat spot_direction3[] = {22.0f, 22.0f, 5.2f};
-
   // Assign created components to GL_LIGHT3.
   glLightfv(GL_LIGHT3, GL_DIFFUSE, diffuseLight3);
   glLightfv(GL_LIGHT3, GL_SPECULAR, specularLight3);
@@ -180,13 +235,6 @@ void renderScene(void) {
   glLightf(GL_LIGHT3, GL_SPOT_EXPONENT, 10.0);
   glLightfv(GL_LIGHT3, GL_SPOT_DIRECTION, spot_direction3);
   glLightf(GL_LIGHT3, GL_SPOT_CUTOFF, 180.0);
-
-  /**************************/
-  // Create light components 4.
-  GLfloat diffuseLight4[] = { 0.8f, 0.8f, 0.8f, 1.0f };
-  GLfloat specularLight4[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-  GLfloat position4[] = { 22.0f, -22.0f, 5.2f, 1.0f };
-  GLfloat spot_direction4[] = {22.0f, -22.0f, 5.2f};
 
   // Assign created components to GL_LIGHT4.
   glLightfv(GL_LIGHT4, GL_DIFFUSE, diffuseLight4);
@@ -197,13 +245,6 @@ void renderScene(void) {
   glLightfv(GL_LIGHT4, GL_SPOT_DIRECTION, spot_direction4);
   glLightf(GL_LIGHT4, GL_SPOT_CUTOFF, 180.0);
 
-  /**************************/
-  // Create light components 5.
-  GLfloat diffuseLight5[] = { 0.8f, 0.8f, 0.8f, 1.0f };
-  GLfloat specularLight5[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-  GLfloat position5[] = { -10.0f, 0.0f, 5.2f, 1.0f };
-  GLfloat spot_direction5[] = {-10.0f, 0.0f, 5.2f};
-
   // Assign created components to GL_LIGHT5.
   glLightfv(GL_LIGHT5, GL_DIFFUSE, diffuseLight5);
   glLightfv(GL_LIGHT5, GL_SPECULAR, specularLight5);
@@ -212,14 +253,6 @@ void renderScene(void) {
   glLightf(GL_LIGHT5, GL_SPOT_EXPONENT, 10.0);
   glLightfv(GL_LIGHT5, GL_SPOT_DIRECTION, spot_direction5);
   glLightf(GL_LIGHT5, GL_SPOT_CUTOFF, 180.0);
-
-  /**************************/
-  // Create light components 6.
-  GLfloat ambientLight6[] = { 0.2f, 0.2f, 0.2f, 1.0f };
-  GLfloat diffuseLight6[] = { 0.8f, 0.8f, 0.8f, 1.0f };
-  GLfloat specularLight6[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-  GLfloat position6[] = { -13.0f, -13.0f, 5.2f, 1.0f };
-  GLfloat spot_direction6[] = {-13.0f, -13.0f, 5.2f};
 
   // Assign created components to GL_LIGHT6.
   glLightfv(GL_LIGHT6, GL_DIFFUSE, diffuseLight6);
@@ -230,13 +263,6 @@ void renderScene(void) {
   glLightfv(GL_LIGHT6, GL_SPOT_DIRECTION, spot_direction6);
   glLightf(GL_LIGHT6, GL_SPOT_CUTOFF, 180.0);
 
-  /**************************/
-  // Create light components 7.
-  GLfloat diffuseLight7[] = { 0.8f, 0.8f, 0.8f, 1.0f };
-  GLfloat specularLight7[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-  GLfloat position7[] = { -18.0f, -18.0f, 5.2f, 1.0f };
-  GLfloat spot_direction7[] = {-18.0f, -18.0f, 5.2f};
-
   // Assign created components to GL_LIGHT7
   glLightfv(GL_LIGHT7, GL_DIFFUSE, diffuseLight7);
   glLightfv(GL_LIGHT7, GL_SPECULAR, specularLight7);
@@ -245,6 +271,17 @@ void renderScene(void) {
   glLightf(GL_LIGHT7, GL_SPOT_EXPONENT, 10.0);
   glLightfv(GL_LIGHT7, GL_SPOT_DIRECTION, spot_direction7);
   glLightf(GL_LIGHT7, GL_SPOT_CUTOFF, 180.0);
+
+  // Assign created components to GL_LIGHT8
+  // glLightfv(GL_LIGHT8, GL_DIFFUSE, diffuseLight8);
+  // glLightfv(GL_LIGHT8, GL_SPECULAR, specularLight8);
+  // glLightfv(GL_LIGHT8, GL_POSITION, position8);
+  // glLightf(GL_LIGHT8, GL_CONSTANT_ATTENUATION, kc);
+  // glLightf(GL_LIGHT8, GL_SPOT_EXPONENT, 10.0);
+  // glLightfv(GL_LIGHT8, GL_SPOT_DIRECTION, spot_direction8);
+  // glLightf(GL_LIGHT8, GL_SPOT_CUTOFF, 180.0);
+
+  lightControl(light_status);
 
 	DrawGround(); // Draw ground
 
