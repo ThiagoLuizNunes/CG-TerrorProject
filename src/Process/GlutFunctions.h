@@ -35,7 +35,7 @@ GLfloat diffuseLight0[] = { 0.8f, 0.8f, 0.8f, 1.0f };
 GLfloat specularLight0[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 GLfloat position0[] = { 10.0f, 0.0f, 5.2f, 1.0f };
 GLfloat spot_direction[] = {10.0f, 0.0f, 5.2f};
-GLfloat kc = 10;
+GLfloat kc = 9;
 bool light_status = true;
 
 // Create light components.
@@ -281,7 +281,7 @@ void renderScene(void) {
   // glLightfv(GL_LIGHT8, GL_SPOT_DIRECTION, spot_direction8);
   // glLightf(GL_LIGHT8, GL_SPOT_CUTOFF, 180.0);
 
-  lightControl(light_status);
+  // lightControl(light_status);
 
 	DrawGround(); // Draw ground
 

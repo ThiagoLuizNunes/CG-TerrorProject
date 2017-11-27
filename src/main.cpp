@@ -25,7 +25,10 @@ int main(int argc, char *argv[]) {
   // std::string lamp_texture = "./objects/lamp/lamp.jpg"; // SO MANY TRiANGLES
 
   std::string door_obj = "./objects/door/door.obj";
-  std::string door_texture = "./objects/door/door.jpg";
+  // std::string door_texture = "./objects/door/door.jpg";
+  std::string door_texture = "./objects/door/door1.png";
+  // std::string door_texture = "./objects/door/door2.png";
+  // std::string door_texture = "./objects/door/door3.jpg";
 
   // std::string door_lock_obj = "./objects/door_lock/door_lock.obj";
   std::string door_lock_obj = "./objects/door_lock/fechadura.obj";
