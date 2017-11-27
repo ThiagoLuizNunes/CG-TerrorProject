@@ -109,7 +109,7 @@ void renderScene(void) {
   glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,50);
 
   //atenuação da luzes
-  GLfloat kc = 10;
+  GLfloat kc = 8;
 
   glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
 
@@ -272,12 +272,12 @@ void renderScene(void) {
 	glPopMatrix();
 
 	glPushMatrix(); // Draw desk
-		// glTranslatef(19.2, 0, 17.2);
+		glTranslatef(19.2, 0, 17.2);
 		DrawObject(_allObjects.at(5), _allTextures.at(5));
 	glPopMatrix();
 
 	glPushMatrix(); // Draw paintings
-		// glTranslatef(19.2, 0, 18.85);
+		glTranslatef(19.2, 0, 18.85);
 		DrawObject(_allObjects.at(6), _allTextures.at(6));
 	glPopMatrix();
 

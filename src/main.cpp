@@ -13,7 +13,7 @@ Project: TerrorOnTheHouse
 int main(int argc, char *argv[]) {
 
   std::string wall_obj = "./objects/wall/wall.obj";
-  std::string wall_texture = "./objects/wall/wall.jpg";
+  std::string wall_texture = "./objects/wall/wall-dark.png";
 
   std::string floor_obj = "./objects/floor/floor.obj";
   std::string floor_texture = "./objects/floor/floor.jpg";
@@ -35,7 +35,9 @@ int main(int argc, char *argv[]) {
   std::string desk_texture = "./objects/desk/desk.jpg";
 
   std::string painting01_obj = "./objects/painting01/painting01.obj";
-  std::string painting01_texture = "./objects/painting01/painting01.jpg";
+  // std::string painting01_texture = "./objects/painting01/painting01.jpg";
+  // std::string painting01_texture = "./objects/painting01/p3.png";
+  std::string painting01_texture = "./objects/painting01/painting-samara.png";
 
   std::string painting02_obj = "./objects/painting02/painting02.obj"; // JPEG NOT SUPPORTED
   std::string painting02_texture = "./objects/painting02/painting02.jpg"; // JPEG NOT SUPPORTED
@@ -80,7 +82,7 @@ int main(int argc, char *argv[]) {
   // _allTextures.push_back(_lamp.getTexture()); // SO MANY TRiANGLES
 
   std::string name = "TerrorOnTheHouse";
-  GlutManager myGlut(&argc, argv, 1024, 720, name, _allObjects, _allTextures);
+  GlutManager myGlut(&argc, argv, 1500, 900, name, _allObjects, _allTextures);
 
   return 0;
 }
