@@ -1,6 +1,6 @@
 #include "MakeTriangle.hpp"
 
-MakeTriangle::MakeTriangle(std::string& mypath) {
+MakeTriangle::MakeTriangle(std::string& mypath, std::string& texture_path) {
   
   ObjectGL *_myObject = new ObjectGL;
   std::string line;
@@ -82,6 +82,20 @@ MakeTriangle::MakeTriangle(std::string& mypath) {
 
       TriangleGL _triangle(&v_first, &v_second, &v_third);
       this->_triangles.push_back(_triangle);
+      /**
+       *
+       * TEXTURE
+       *
+       */
+      int width, height, channels;
+      unsigned char* data = 
+            SOIL_load_image(texture_path.c_str(), &width, &height, &channels, SOIL_LOAD_AUTO);
+      if (data) {
+        this->_texture = new TextureGL(width, height, channels, data);
+      } 
+      else {
+        std::cerr << "SOIL loading error: " << SOIL_last_result() << std::endl;
+      }
 
       face.clear();
     }
@@ -91,52 +105,6 @@ MakeTriangle::~MakeTriangle() {}
 std::vector<TriangleGL> MakeTriangle::getTriangles(void) {
 	return this->_triangles;
 }
-
-/*----------  Test block  ----------*/
-
-  // std::vector<glm::vec3> _testeV , _testeVn;
-  // std::vector<glm::vec2> _testeVt;
-  // std::vector< std::vector<int> > _testeFaces;
-
-  /*----------  Test block  ----------*/
-/* Test block */
-      // int _v = 0;
-      // int _vn = 0;
-      // int _vt = 0;
-      // int _f = 0;
-/* Test block - catch vertex */
-          // _testeV = _myObject->getVertices();
-          // glm::vec3 temp = _testeV.at(_v);
-          // std::clog << temp.x << " " << temp.y << " " << temp.z << std::endl;
-          // _v++;
-/* Test block - catch normal vectors */
-          // _testeVn = _myObject->getNormals();
-          // glm::vec3 temp = _testeVn.at(_vn);
-          // std::clog << temp.x << " " << temp.y << " " << temp.z << std::endl;
-          // _vn++;
-/* Test block - catch textures */
-          // _testeVt = _myObject->getTextures();
-          // glm::vec2 temp = _testeVt.at(_vt);
-          // std::clog << temp.x << " " << temp.y << std::endl;
-          // _vt++;
-/* Test block - catch faces(triangle */
-          // _testeFaces = _myObject->getFaces();
-          // for (int i = 0; i < _testeFaces.at(_f).size(); i++)
-          // {
-          //   std::clog << _testeFaces.at(_f).at(i) << " ";
-          // }
-          // std::clog << std::endl;
-          // _f++;
-      /*----------  Test block vertices in triangles  ----------*/
-      // VertexGL *v_first = nullptr;
-      // VertexGL *v_second = nullptr;
-      // VertexGL *v_third = nullptr;
-      // TriangleGL *triangle = nullptr;
-
-      // v_first = new VertexGL(vertices_.at(face.at(0) - 1), normals_.at(face.at(2) - 1), textures_.at(face.at(1) - 1));
-      // v_second = new VertexGL(vertices_.at(face.at(3) - 1), normals_.at(face.at(5) - 1), textures_.at(face.at(4) - 1));
-      // v_third = new VertexGL(vertices_.at(face.at(6) - 1), normals_.at(face.at(8) - 1), textures_.at(face.at(7) - 1));
-      
-      // delete v_first;
-      // delete v_second;
-      // delete v_third;
+TextureGL* MakeTriangle::getTexture(void) {
+  return this->_texture;
+}

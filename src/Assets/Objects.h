@@ -2,25 +2,41 @@
 #define OBJECTS_H
 
 #include <iostream>
-#include <fstream>
 #include <iostream>
 #include <string>
 #include <vector>
 
 #include "TriangleGL.hpp"
 #include "VertexGL.hpp"
+#include "TextureGL.hpp"
 
 extern "C" {
   #include <GL/gl.h>
   #include <GL/glut.h>
 }
 
-void DrawObject (std::vector<TriangleGL> obj) {
+void DrawObject (std::vector<TriangleGL> obj, TextureGL *texture) {
 	int count  = obj.size();
-	glColor3f(0.0f,0.0f,1.0f); //blue color
-	// glEnable(GL_TEXTURE_2D);
-	// glTexImage2D();
-	// glTexEnvi(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
+
+	glEnable( GL_TEXTURE_2D );
+
+	// glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // MAG - LINEAR
+
+	// glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); // MIN - NEAREST
+	// glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // MINI - LINEAR
+	glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); // MINI - MIPMAP
+	glTexEnvi(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_MODULATE);
+
+	// glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, 1); 
+
+    // glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP);
+    // glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP);
+
+    // glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP);
+    // glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
+
+	glBindTexture( GL_TEXTURE_2D, texture->getTextureID() );
 
 	for (int i = 0; i < count; i++) {
 		glBegin(GL_TRIANGLES);
@@ -33,23 +49,26 @@ void DrawObject (std::vector<TriangleGL> obj) {
 			glm::vec2 second_vt = obj.at(i).getSecondVertex()->getTexture();
 			glm::vec2 third_vt = obj.at(i).getThirdVertex()->getTexture();
 
-		    // glTexCoord2f(first_vt.x, first_vt.y); 
+		    glTexCoord2f(first_vt.x, first_vt.y); 
 		    glVertex3f(first.x, first.y, first.z);
-		    // glTexCoord2f(second_vt.x, second_vt.y); 
+
+		    glTexCoord2f(second_vt.x, second_vt.y); 
 		    glVertex3f(second.x, second.y, second.z);
-		    // glTexCoord2f(third_vt.x, third_vt.y); 
+
+		    glTexCoord2f(third_vt.x, third_vt.y); 
 		    glVertex3f(third.x, third.y, third.z);
 	  	glEnd();
 	}
+	glEnable(GL_TEXTURE_2D);
 }
 void DrawGround () {
-  glColor3f(0.9f, 0.9f, 0.9f);
+  glColor3f(0.5f, 0.5f, 0.5f);
 	glBegin(GL_QUADS);
 		glVertex3f(-100.0f, 0.0f, -100.0f);
 		glVertex3f(-100.0f, 0.0f,  100.0f);
 		glVertex3f( 100.0f, 0.0f,  100.0f);
 		glVertex3f( 100.0f, 0.0f, -100.0f);
-	glEnd();
+  glEnd();
 }
 void DrawSnowMan () {
 	glColor3f(1.0f, 1.0f, 1.0f);
@@ -75,33 +94,6 @@ void DrawSnowMan () {
 	glColor3f(1.0f, 0.5f , 0.5f);
 	glRotatef(0.0f,1.0f, 0.0f, 0.0f);
 	glutSolidCone(0.08f,0.5f,10,2);
-}
-void DrawTriangle (void) {
-  glTranslatef(0.0f,0.0f,-4.0f);//move forward 4 units
-
-  glColor3f(0.0f,0.0f,1.0f); //blue color
-
-  glBegin(GL_TRIANGLES);//start drawing triangles
-    glVertex3f(-1.0f,-0.25f,0.0f);//triangle one first vertex
-    glVertex3f(-0.5f,-0.25f,0.0f);//triangle one second vertex
-    glVertex3f(-0.75f,0.25f,0.0f);//triangle one third vertex
-    //drawing a new triangle
-    glVertex3f(0.5f,-0.25f,0.0f);//triangle two first vertex
-    glVertex3f(1.0f,-0.25f,0.0f);//triangle two second vertex
-    glVertex3f(0.75f,0.25f,0.0f);//triangle two third vertex
-  glEnd();//end drawing of triangles
-}
-void DrawQuad (void) {
-  glColor3f(1.0f, 0.0f, 0.0f);
-  glTranslatef(-1.0f, 0.0f, 0.0f);
-  glBegin(GL_QUADS);
-    glVertex3f(0.0f,1.0f,0.0f);
-    glVertex3f(0.0f, 0.0f, 0.0f);
-    // Especifica que a cor corrente é azul
-    glColor3f(0.0f, 0.0f, 1.0f);
-    glVertex3f(1.0f,0.0f, 0.0f);
-    glVertex3f(1.0f,1.0f,0.0f);
-  glEnd();
 }
 void DrawCube (void) {
   float size1 = 0.5f;
