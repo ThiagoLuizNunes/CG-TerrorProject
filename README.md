@@ -37,6 +37,29 @@ $ make
 ```
 $ ./terror-project
 ```
+## Screenshots
+
+<p align="center">
+	<br>
+	<img src="./screenshots/terror-demo1.png"/ width=600px height=400px>
+	<h5 align="center">Figure 1</h5>
+	<br>
+</p>
+---
+<p align="center">
+	<br>
+	<img src="./screenshots/terror-demo2.png"/ width=600px height=400px>
+	<h5 align="center">Figure 2</h5>
+	<br>
+</p>
+---
+<p align="center">
+	<br>
+	<img src="./screenshots/terror-demo3.png"/ width=600px height=400px>
+	<h5 align="center">Figure 3</h5>
+	<br>
+</p>
+---
 ## Contributors
 
 * Thiago Luiz Pereira Nunes ([ThiagoLuizNunes](https://github.com/ThiagoLuizNunes)) thiago.luiz@lavid.ufpb.br
