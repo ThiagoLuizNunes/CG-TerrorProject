@@ -2,7 +2,7 @@
 
 Toolkit: OpenGL | Glut | Computer Graphic | C++
 
-This repository contains the final project of the Computer Graphic discipline. The project consist of a terror game demonstration in the first person inspired for Amnesia game and PT. The objective of demo has like purpose immerse the player at a terror environment located inside at the one maze wich was cursed.
+This repository contains the final project of the Computer Graphic discipline. The project consist of a terror game demonstration in the first person inspired for Amnesia game and PT. The objective of demo has like purpose immerse the player at a terror environment located inside at the one maze which was cursed.
 
 ## Requiriments ##
 
