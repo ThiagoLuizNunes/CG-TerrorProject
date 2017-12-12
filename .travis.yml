@@ -2,22 +2,22 @@ dist: precise
 language: 
   - cpp
 compiler: 
-  - clang
-# matrix:
-#   include:
-#     # works on Precise and Trusty
-#     - os: linux
-#       addons:
-#         apt:
-#           sources:
-#             - ubuntu-toolchain-r-test
-#           packages:
-#             - g++-4.9
-#       env:
-#         - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
+  - gcc
+matrix:
+  include:
+    # works on Precise and Trusty
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-4.9
+      env:
+        - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
 before_install:
+  - eval "${MATRIX_EVAL}"
   - sudo apt-get update -qq
-  # - eval "${MATRIX_EVAL}"
 install:
   - sudo apt-get install -qq build-essential
   - sudo apt-get install -qq freeglut3-dev
@@ -25,7 +25,7 @@ install:
   - sudo apt-get install -qq libglm-dev
 script: 
   - make
-  - ./bin/terror-project
+  # - ./bin/terror-project
 branches:
   only:
     - master

@@ -1,5 +1,4 @@
-CC = clang++
-# CC = g++
+CC = g++
 
 # Folders
 SRCDIR := src
