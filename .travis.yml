@@ -1,6 +1,6 @@
 language: cpp
-sudo: required
-dist: trusty
+# sudo: false
+dist: precise
 compiler: 
   - g++
 matrix:
