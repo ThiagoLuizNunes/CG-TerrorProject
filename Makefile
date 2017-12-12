@@ -23,7 +23,8 @@ INCLIST := $(patsubst src/%,-I src/%,$(INCDIRS))
 BUILDLIST := $(patsubst src/%,$(BUILDDIR)/%,$(INCDIRS))
 
 # Shared Compiler Flags
-CFLAGS := -g -std=c++11 -w
+# CFLAGS := -g -std=c++11 -w
+CFLAGS := -g -std=c++0x -w
 INC := -I include $(INCLIST) -I /usr/include/GL -I /usr/include/glm -I /usr/include/SOIL
 LIB := -lGL -lGLU -lglut -lSOIL
 # LIB := `pkg-config --libs GL` -lm -lrt
