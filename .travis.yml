@@ -2,7 +2,7 @@ dist: precise
 language: 
   - cpp
 compiler: 
-  - g++
+  - clang
 # matrix:
 #   include:
 #     # works on Precise and Trusty
