@@ -2,7 +2,6 @@ dist: precise
 language: 
   - cpp
 compiler: 
-  - g++ 
   - gcc
 matrix:
   include:
@@ -14,7 +13,6 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-4.9
-            - gcc-4.9
       env:
         - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
 before_install:
@@ -24,8 +22,8 @@ before_install:
 - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
 - sudo apt-get update -qq
 install:
-  # - sudo apt-get install -qq g++-5.4.0
-  # - export CXX="g++-5.4.0"
+  - g++ --version 
+  - gcc --version
   - sudo apt-get install -qq build-essential
   - sudo apt-get install -qq freeglut3-dev
   - sudo apt-get install -qq libsoil-dev
