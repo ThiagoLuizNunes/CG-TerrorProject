@@ -2,7 +2,7 @@ language: cpp
 sudo: required
 dist: trusty
 compiler: 
-    - g++
+  - g++
 matrix:
   include:
     # works on Precise and Trusty
@@ -14,15 +14,18 @@ matrix:
           packages:
             - g++-4.9
       env:
-         - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
+        - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
 before_install:
-    - sudo apt-get update -qq
-    - eval "${MATRIX_EVAL}"
+  - sudo apt-get update -qq
+  - eval "${MATRIX_EVAL}"
 install:
-    - sudo apt-get install -qq build-essential
-    - sudo apt-get install -qq freeglut3-dev
-    - sudo apt-get install -qq libsoil-dev
-    - sudo apt-get install -qq libglm-dev
+  - sudo apt-get install -qq build-essential
+  - sudo apt-get install -qq freeglut3-dev
+  - sudo apt-get install -qq libsoil-dev
+  - sudo apt-get install -qq libglm-dev
 script: 
     - make
     - ./bin/terror-project
+branches:
+  only:
+    - master
