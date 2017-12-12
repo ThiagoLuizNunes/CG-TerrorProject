@@ -24,8 +24,8 @@ install:
   - sudo apt-get install -qq libsoil-dev
   - sudo apt-get install -qq libglm-dev
 script: 
-    - make
-    - ./bin/terror-project
+  - make
+  - ./bin/terror-project
 branches:
   only:
     - master
