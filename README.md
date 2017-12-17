@@ -58,10 +58,14 @@ $ ./terror-project
 	<br>
 </p>
 
-## Contributors ##
+## Authors ##
 
 * Thiago Luiz Pereira Nunes ([ThiagoLuizNunes](https://github.com/ThiagoLuizNunes)) thiago.luiz@lavid.ufpb.br
 * Leandro Mendes dos Santos ([Leandro Mendes dos Santos](https://github.com/LeandroUFPB)) leandro.mendes@eng.ci.ufpb.br
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 >Created By **[ThiagoLuizNunes](https://www.linkedin.com/in/thiago-luiz-507483112/)** 2017.
 
