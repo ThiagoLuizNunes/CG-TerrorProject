@@ -19,9 +19,9 @@ This repository contains the final project of the Computer Graphic discipline. T
 ```
 ## Build Instructions
 
-1. Clone de project.
+1. Clone the project.
 
-2. Move to the desired project
+2. Move to the desired folder
 
 3. Invoke the makefile
 
